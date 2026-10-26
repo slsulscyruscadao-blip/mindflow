@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en" data-contrast="standard" data-font="inter">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindFlow</title>
+<meta name="description" content="MindFlow: calm, one-step-at-a-time recipes for ADHD and executive function.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--color-background-primary:#F8F7F2;--color-background-secondary:#EEF1E8;--color-background-inverse:#293329;--color-surface-default:#FFFFFF;--color-surface-subtle:#E7EBDD;--color-surface-selected:#E4EADB;--color-surface-completed:#EEF1E8;--color-surface-disabled:#E7EBDD;--color-brand-primary:#506447;--color-brand-primaryHover:#3E5036;--color-brand-primaryPressed:#2F3E2A;--color-brand-accent:#65785B;--color-brand-secondary:#C8D2BC;--color-brand-onPrimary:#FFFFFF;--color-text-primary:#293329;--color-text-secondary:#4F594D;--color-text-muted:#626B60;--color-text-disabled:#767D72;--color-text-onInverse:#F8F7F2;--color-text-link:#2C5F6B;--color-border-default:#D9DED2;--color-border-strong:#8A9484;--color-border-selected:#506447;--color-feedback-success:#426B4A;--color-feedback-successSurface:#DCEADD;--color-feedback-warning:#98652E;--color-feedback-warningSurface:#F8E9D2;--color-feedback-error:#A3443D;--color-feedback-errorSurface:#F5DEDB;--color-feedback-info:#426B78;--color-feedback-infoSurface:#DCE9ED;--color-feedback-warningText:#6F4519;--color-focus-ring:#355D43;--color-focus-halo:#FFFFFF;--color-state-hover:#EEF1E8;--color-state-pressed:#E4EADB;--color-state-disabled:#E7EBDD;--color-state-selected:#E4EADB;--color-state-completed:#EEF1E8;--color-timer-running:#2C5F6B;--color-timer-runningSurface:#D8EAEE;--color-timer-paused:#4F594D;--color-timer-pausedSurface:#E7EBDD;--color-timer-expired:#98652E;--color-timer-expiredSurface:#F8E9D2;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;--space-20:80px;--radius-none:0px;--radius-small:8px;--radius-medium:12px;--radius-large:20px;--radius-pill:999px;--shadow-none:none;--shadow-low:0 1px 2px rgba(41,51,41,0.06), 0 1px 1px rgba(41,51,41,0.04);--shadow-medium:0 4px 12px rgba(41,51,41,0.08), 0 1px 3px rgba(41,51,41,0.06);--shadow-high:0 12px 32px rgba(41,51,41,0.14), 0 2px 6px rgba(41,51,41,0.08);--shadow-dock:0 -4px 20px rgba(41,51,41,0.10)}
+html[data-contrast=high]{--color-background-primary:#FFFFFF;--color-background-secondary:#F2F2F2;--color-surface-default:#FFFFFF;--color-surface-subtle:#EDEDED;--color-brand-primary:#1F3A1A;--color-brand-primaryHover:#142610;--color-text-primary:#000000;--color-text-secondary:#1A1A1A;--color-text-muted:#333333;--color-border-default:#4A4A4A;--color-focus-ring:#0B3D91;--color-timer-running:#0B3D5C;--color-timer-expired:#6B3F00;--color-border-strong:#4A4A4A}
+:root{
+  --bg:var(--color-background-primary);--bg2:var(--color-background-secondary);
+  --surface:var(--color-surface-default);--subtle:var(--color-surface-subtle);
+  --brand:var(--color-brand-primary);--brand-h:var(--color-brand-primaryHover);--brand-p:var(--color-brand-primaryPressed);
+  --on-brand:var(--color-brand-onPrimary);--brand2:var(--color-brand-secondary);
+  --text:var(--color-text-primary);--text2:var(--color-text-secondary);--muted:var(--color-text-muted);--dis:var(--color-text-disabled);
+  --border:var(--color-border-default);--border-s:var(--color-border-strong);
+  --focus:var(--color-focus-ring);
+  --hover:var(--color-state-hover);--press:var(--color-state-pressed);--sel:var(--color-state-selected);--done:var(--color-state-completed);
+  --font-inter:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-acc:'Atkinson Hyperlegible',Inter,system-ui,sans-serif;
+  --gutter:16px;--bar-h:0px;--dock-bottom:16px;
+  --r-s:var(--radius-small);--r-m:var(--radius-medium);--r-l:var(--radius-large);
+}
+@media (min-width:600px){:root{--gutter:24px}}
+@media (min-width:1025px){:root{--gutter:32px}}
+*{box-sizing:border-box}
+html{font-size:100%;-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+html[data-size=large]{font-size:112.5%}
+html[data-size=xl]{font-size:125%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-inter);font-size:1rem;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+html[data-font=atkinson] body{font-family:var(--font-acc)}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+a{color:var(--color-text-link)}
+img,svg{max-width:100%}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-100px;background:var(--surface);padding:12px 16px;border-radius:var(--r-s);z-index:100;border:2px solid var(--brand)}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff}
+[tabindex="-1"]:focus{outline:none;box-shadow:none}
+.ic{width:24px;height:24px;flex:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
+#app{flex:1;display:flex;flex-direction:column;min-width:0}
+main{flex:1;padding-bottom:calc(var(--bar-h) + 96px)}
+.display{font-size:clamp(2.5rem,5vw,3rem);line-height:1.15;font-weight:700;letter-spacing:-.02em}
+.h1{font-size:2rem;line-height:1.25;font-weight:600}
+.h2{font-size:1.5rem;line-height:1.3;font-weight:600}
+.h3{font-size:1.25rem;line-height:1.4;font-weight:600}
+.lead{font-size:1.125rem;color:var(--text2);max-width:65ch}
+.support{font-size:.875rem;font-weight:500;color:var(--text2)}
+.label{font-size:.8125rem;font-weight:500;letter-spacing:.01em;color:var(--text2)}
+.eyebrow{font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text2)}
+.stack>*+*{margin-top:var(--space-4)}
+.stack-lg>*+*{margin-top:var(--space-8)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;min-width:48px;padding:0 24px;border-radius:var(--r-m);border:2px solid transparent;font-size:1.0625rem;font-weight:600;cursor:pointer;text-decoration:none;line-height:1.2;text-align:center;transition:background-color .12s,border-color .12s}
+.btn-primary{background:var(--brand);color:var(--on-brand)}
+.btn-primary:hover,.btn-primary.is-hover{background:var(--brand-h)}
+.btn-primary:active,.btn-primary.is-pressed{background:var(--brand-p)}
+.btn-secondary{background:var(--surface);color:var(--brand);border-color:var(--brand)}
+.btn-secondary:hover,.btn-secondary.is-hover{background:var(--hover)}
+.btn-secondary:active,.btn-secondary.is-pressed{background:var(--press)}
+.btn-quiet{background:transparent;color:var(--text);padding:0 16px;min-height:48px}
+.btn-quiet:hover{background:var(--hover)}
+.btn-icon{padding:0;width:48px;height:48px;min-height:48px}
+.btn:disabled,.btn[aria-disabled=true]{background:var(--color-surface-disabled);color:var(--dis);border-color:transparent;cursor:not-allowed}
+.btn.is-focus{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff}
+.btn.is-loading{position:relative}
+.dots{display:inline-flex;gap:4px}.dots i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:blink 1s infinite}.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.btn-block{width:100%}
+
+/* ---------- header ---------- */
+.site-header{background:var(--bg);border-bottom:1px solid var(--border)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:1.25rem;min-height:48px}
+.logo svg{width:32px;height:32px}
+.nav-desktop{display:none;gap:8px;align-items:center}
+.navlink{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border-radius:var(--r-m);text-decoration:none;color:var(--text);font-weight:500}
+.navlink:hover{background:var(--hover)}
+.navlink[aria-current=page]{background:var(--sel);font-weight:600;box-shadow:inset 0 -3px 0 var(--brand)}
+.menu-btn{display:inline-flex}
+.mobile-menu{border-top:1px solid var(--border);background:var(--surface)}
+.mobile-menu .wrap{display:grid;gap:4px;padding-top:8px;padding-bottom:12px;min-height:0}
+.mobile-menu .navlink{min-height:56px;font-size:1.0625rem}
+@media (min-width:600px){.nav-desktop{display:flex}.menu-btn,.mobile-menu{display:none!important}}
+
+/* ---------- search & chips ---------- */
+.hero{padding:40px 0 24px}
+.hero .lead{margin-top:12px}
+.search{display:flex;gap:8px;margin-top:24px;max-width:720px}
+.search .field{position:relative;flex:1}
+.search .field .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text2);pointer-events:none}
+.search input{width:100%;height:56px;padding:0 16px 0 52px;border-radius:var(--r-m);border:2px solid var(--border-s);background:var(--surface);font-size:1.125rem}
+.search input::placeholder{color:var(--muted);opacity:1}
+.search .btn-icon{width:56px;height:56px;border:2px solid var(--border-s);background:var(--surface);color:var(--text)}
+.search .btn-icon:hover{background:var(--hover)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;border-radius:999px;border:2px solid var(--border-s);background:var(--surface);cursor:pointer;font-weight:500}
+.chip .ic{width:18px;height:18px;display:none}
+.chip:hover{background:var(--hover)}
+.chip[aria-pressed=true]{background:var(--sel);border-color:var(--brand);font-weight:600}
+.chip[aria-pressed=true] .ic{display:block}
+.voice-status{min-height:24px;margin-top:8px}
+
+/* ---------- cards ---------- */
+.continue{display:flex;flex-direction:column;gap:16px;background:var(--surface);border:2px solid var(--brand);border-radius:var(--r-m);padding:16px;margin-top:24px}
+.continue .meta{display:grid;gap:8px;flex:1}
+@media (min-width:600px){.continue{flex-direction:row;align-items:center}}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.rcard{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-low);transition:box-shadow .2s}
+.rcard:hover,.rcard.is-hover{box-shadow:var(--shadow-medium)}
+.rcard:has(a:focus-visible),.rcard.is-focus{outline:3px solid var(--focus);outline-offset:2px}
+.rcard a:focus-visible{outline:none;box-shadow:none}
+.rcard .thumb svg{display:block;width:100%;height:auto}
+.rcard .body{padding:16px;display:grid;gap:8px;flex:1}
+.rcard h3 a{color:var(--text);text-decoration:none}
+.rcard h3 a::after{content:'';position:absolute;inset:0}
+.rcard .save{position:absolute;top:8px;right:8px;z-index:2;display:inline-flex;align-items:center;gap:6px;min-height:48px;min-width:48px;padding:0 12px;border-radius:var(--r-m);border:2px solid var(--border-s);background:var(--surface);cursor:pointer;font-weight:600;font-size:.875rem;justify-content:center}
+.rcard .save:hover{background:var(--hover)}
+.rcard .save[aria-pressed=true]{border-color:var(--brand);background:var(--sel)}
+.rcard .save .ic{width:20px;height:20px}
+.rcard.is-continue{border:2px solid var(--brand)}
+.facts-row{display:flex;flex-wrap:wrap;gap:4px 16px;color:var(--text2);font-size:.875rem;font-weight:500}
+.facts-row span{display:inline-flex;align-items:center;gap:6px}
+.facts-row .ic{width:18px;height:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 12px;border-radius:999px;background:var(--bg2);border:1px solid var(--border-s);font-size:.8125rem;font-weight:600;color:var(--text)}
+.pill .ic{width:16px;height:16px}
+.featured{display:grid;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;position:relative;margin-top:40px}
+.featured .thumb svg{display:block;width:100%;height:100%;object-fit:cover}
+.featured .body{padding:24px;display:grid;gap:12px;align-content:center}
+.featured h2 a{color:var(--text);text-decoration:none}
+.featured h2 a::after{content:'';position:absolute;inset:0}
+.featured:has(a:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
+.featured a:focus-visible{outline:none;box-shadow:none}
+@media (min-width:600px){.featured{grid-template-columns:1fr 1fr}.featured .body{padding:32px}}
+.section{margin-top:48px}
+.section>.h2{margin-bottom:16px}
+.empty{background:var(--surface);border:2px dashed var(--border-s);border-radius:var(--r-m);padding:32px 24px;text-align:center;display:grid;gap:12px;justify-items:center}
+
+/* ---------- recipe overview ---------- */
+.crumb{padding:16px 0 0}
+.split{display:grid;gap:32px;padding-top:16px}
+@media (min-width:1025px){.split{grid-template-columns:5fr 6fr;gap:48px;align-items:start}.split .summary{position:sticky;top:16px}}
+@media (min-width:600px) and (max-width:1024px){.split .summary .hero-img{max-width:640px}}
+.hero-img{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--border)}
+.hero-img svg{display:block;width:100%;height:auto}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m)}
+@media (min-width:600px){.facts{grid-template-columns:repeat(4,1fr)}}
+.facts dt{font-size:.8125rem;font-weight:500;color:var(--text2)}
+.facts dd{margin:0;font-size:1.25rem;font-weight:600}
+.ctas{display:grid;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end}
+.controls .grp{display:grid;gap:6px}
+.seg{display:inline-flex;border:2px solid var(--border-s);border-radius:var(--r-m);overflow:hidden;background:var(--surface)}
+.seg button{min-height:48px;min-width:56px;padding:0 16px;border:0;background:transparent;cursor:pointer;font-weight:500;border-right:2px solid var(--border-s)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--hover)}
+.seg button[aria-pressed=true]{background:var(--brand);color:var(--on-brand);font-weight:600}
+.seg button:focus-visible{outline-offset:-3px}
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);cursor:pointer;position:relative}
+.row input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.row .box{width:28px;height:28px;border:2px solid var(--border-s);border-radius:var(--r-s);display:grid;place-items:center;flex:none;background:var(--surface)}
+.row .box .ic{width:20px;height:20px;color:var(--on-brand);opacity:0}
+.row:hover,.row.is-hover{background:var(--hover)}
+.row:has(input:focus-visible),.row.is-focus{outline:3px solid var(--focus);outline-offset:2px}
+.row input:focus-visible{outline:none}
+.row:has(input:checked) .box,.row.is-checked .box{background:var(--brand);border-color:var(--brand)}
+.row:has(input:checked) .box .ic,.row.is-checked .box .ic{opacity:1}
+.row:has(input:checked),.row.is-checked{background:var(--done)}
+.row:has(input:checked) .name,.row.is-checked .name{text-decoration:line-through;color:var(--text2)}
+.row .qty{font-weight:600;min-width:5.5ch;font-variant-numeric:tabular-nums}
+.row .eq{color:var(--text2)}
+.row .eq .ic{width:24px;height:24px}
+.row .state{margin-left:auto;font-size:.8125rem;font-weight:600;color:var(--text2);display:none;align-items:center;gap:4px}
+.row:has(input:checked) .state,.row.is-checked .state{display:inline-flex}
+.row .state .ic{width:16px;height:16px}
+details.ready{margin-top:12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-m)}
+details.ready>summary{min-height:56px;display:flex;align-items:center;gap:8px;padding:0 16px;cursor:pointer;font-weight:600;list-style:none}
+details.ready>summary::-webkit-details-marker{display:none}
+details.ready>summary::after{content:'+';margin-left:auto;font-size:1.5rem;font-weight:500}
+details.ready[open]>summary::after{content:'\2212'}
+details.ready .checklist{padding:0 12px 12px}
+details.disclose{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m)}
+details.disclose>summary{min-height:56px;display:flex;align-items:center;padding:0 16px;cursor:pointer;font-weight:600;list-style:none;gap:8px}
+details.disclose>summary::-webkit-details-marker{display:none}
+details.disclose>summary::after{content:'+';margin-left:auto;font-size:1.5rem;font-weight:500}
+details.disclose[open]>summary::after{content:'\2212'}
+details.disclose>.in{padding:0 16px 16px}
+details.disclose ol{margin:0;padding-left:24px;display:grid;gap:12px;max-width:65ch}
+
+/* ---------- switch ---------- */
+.switch{display:inline-flex;align-items:center;gap:12px;min-height:48px;background:none;border:0;padding:0;cursor:pointer;font-weight:600}
+.switch .track{width:56px;height:32px;border-radius:999px;background:var(--border-s);position:relative;flex:none;transition:background-color .12s;border:2px solid var(--border-s)}
+.switch .track::after{content:'';position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .12s;box-shadow:var(--shadow-low)}
+.switch[aria-checked=true] .track{background:var(--brand);border-color:var(--brand)}
+.switch[aria-checked=true] .track::after{transform:translateX(24px)}
+.switch .txt{min-width:2.5ch}
+.switch:disabled{cursor:not-allowed;color:var(--dis)}
+.switch:disabled .track{background:var(--color-surface-disabled);border-color:var(--border)}
+.switch.is-focus{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff;border-radius:var(--r-s)}
+.switch-row{display:flex;gap:16px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:12px 16px}
+
+/* ---------- progress ---------- */
+.progress{display:grid;gap:8px}
+.progress .bar{height:12px;background:var(--subtle);border-radius:999px;overflow:hidden;border:1px solid var(--border-s)}
+.progress .bar>i{display:block;height:100%;background:var(--brand);border-radius:999px;transition:width .2s}
+.progress.is-complete .bar>i{background:var(--color-feedback-success)}
+.progress .cap{display:flex;justify-content:space-between;font-weight:600;font-size:.9375rem;align-items:center;gap:8px}
+.progress .cap .ic{width:18px;height:18px}
+.segs{display:flex;gap:6px}
+.segs i{flex:1;height:12px;border-radius:999px;background:var(--subtle);border:1px solid var(--border-s)}
+.segs i.d{background:var(--brand);border-color:var(--brand)}
+.segs i.c{background:var(--surface);border:3px solid var(--brand)}
+
+/* ---------- prep ---------- */
+.narrow{max-width:720px;margin:0 auto}
+.prep-head{padding:32px 0 16px}
+.cols{display:grid;gap:32px}
+@media (min-width:1025px){.cols.two{grid-template-columns:1fr 1fr}}
+.sticky-cta{position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 75%,transparent);padding:16px 0 calc(16px + env(safe-area-inset-bottom));margin-top:32px;display:grid;gap:12px;z-index:5}
+
+/* ---------- cook ---------- */
+body.cooking{--bar-h:81px}
+.focus-head{background:var(--bg);border-bottom:1px solid var(--border)}
+.focus-head .wrap{display:flex;align-items:center;gap:8px;min-height:64px}
+.focus-head .t{flex:1;font-weight:600;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cook-layout{display:grid;gap:24px;padding-top:24px}
+@media (min-width:600px){.cook-layout{grid-template-columns:minmax(0,1fr) 300px;align-items:start}}
+@media (min-width:1025px){.cook-layout{grid-template-columns:minmax(0,1fr) 340px;gap:32px}}
+.stepcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r-m);padding:24px;display:grid;gap:20px;box-shadow:var(--shadow-medium)}
+@media (min-width:600px){.stepcard{padding:40px}}
+.stepcard.is-done{background:var(--done)}
+.stepcard .step-title{font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:.04em;text-transform:uppercase;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.instruction{font-size:clamp(1.25rem,2.2vw,1.625rem);line-height:1.6;font-weight:500;max-width:65ch}
+.badge{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 12px;border-radius:999px;font-size:.8125rem;font-weight:700;letter-spacing:.02em;text-transform:none;background:var(--color-feedback-successSurface);color:var(--color-feedback-success);border:1px solid var(--color-feedback-success)}
+.badge .ic{width:16px;height:16px}
+.note{display:flex;gap:12px;padding:16px;border-radius:var(--r-m);border:2px solid}
+.note.warn{background:var(--color-feedback-warningSurface);border-color:var(--color-feedback-warning);color:var(--color-feedback-warningText)}
+.note.info{background:var(--color-feedback-infoSurface);border-color:var(--color-feedback-info);color:#25434d}
+.note .ic{margin-top:2px}
+.note strong{display:block}
+.side{display:grid;gap:16px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:16px;display:grid;gap:12px}
+.panel h2{font-size:1rem;font-weight:700;display:flex;gap:8px;align-items:center}
+.panel ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.panel li{display:flex;gap:10px;align-items:center}
+.panel li .q{font-weight:600;min-width:6ch;font-variant-numeric:tabular-nums}
+.panel li .ic{width:22px;height:22px;color:var(--text2)}
+.panel .none{color:var(--text2);font-size:.9375rem}
+.actionbar{position:sticky;bottom:0;z-index:30;background:var(--bg);border-top:1px solid var(--border);padding:12px 0 calc(12px + env(safe-area-inset-bottom))}
+.actionbar .wrap{display:flex;gap:12px}
+.actionbar .btn{flex:1}
+.actionbar .btn-primary{flex:2}
+.banner{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--color-feedback-infoSurface);border:2px solid var(--color-feedback-info);border-radius:var(--r-m);padding:12px 16px;color:#25434d}
+.banner p{flex:1;min-width:200px;font-weight:500}
+
+/* ---------- timers ---------- */
+.timer{--tc:var(--color-timer-running);--ts:var(--color-timer-runningSurface);border:2px solid var(--tc);background:var(--ts);border-radius:var(--r-m);padding:16px;display:grid;gap:12px;color:var(--text)}
+.timer[data-state=paused]{--tc:var(--color-timer-paused);--ts:var(--color-timer-pausedSurface)}
+.timer[data-state=done]{--tc:var(--color-timer-expired);--ts:var(--color-timer-expiredSurface);color:var(--color-feedback-warningText)}
+.timer[data-state=dismissed]{--tc:var(--border-s);--ts:var(--surface)}
+.timer .status{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--tc);font-size:.9375rem}
+.timer[data-state=done] .status{color:var(--color-feedback-warningText)}
+.timer .digits{font-size:2.5rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.timer[data-state=done] .digits{color:var(--color-feedback-warningText)}
+.timer .tlabel{font-weight:500;color:var(--text2)}
+.timer[data-state=done] .tlabel{color:var(--color-feedback-warningText)}
+.timer .tctl{display:flex;gap:8px;flex-wrap:wrap}
+.timer .tctl .btn{flex:1;min-width:120px}
+.timer[data-state=done]{animation:soft 1.6s ease-in-out 3}
+@keyframes soft{50%{box-shadow:0 0 0 6px rgba(152,101,46,.28)}}
+.timer-idle{width:100%}
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--dock-bottom) + env(safe-area-inset-bottom));width:min(560px,calc(100% - 24px));z-index:40;display:grid;gap:8px;max-height:45vh;overflow:auto}
+@media (min-width:1025px){.dock{left:auto;right:24px;transform:none;width:380px}}
+.dock[hidden]{display:none}
+.dock .dockitem{display:flex;align-items:center;gap:8px;background:var(--ts);border:2px solid var(--tc);border-radius:var(--r-m);padding:8px 8px 8px 16px;box-shadow:var(--shadow-high);--tc:var(--color-timer-running);--ts:var(--surface);color:var(--text)}
+.dock .dockitem[data-state=paused]{--tc:var(--color-timer-paused)}
+.dock .dockitem[data-state=done]{--tc:var(--color-timer-expired);--ts:var(--color-timer-expiredSurface);color:var(--color-feedback-warningText)}
+.dock .dockitem .info{flex:1;min-width:0;display:grid}
+.dock .dockitem .where{font-size:.8125rem;font-weight:600;display:flex;gap:6px;align-items:center;color:var(--tc)}
+.dock .dockitem[data-state=done] .where{color:var(--color-feedback-warningText)}
+.dock .dockitem .where .ic{width:16px;height:16px}
+.dock .dockitem .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:inherit;text-decoration:none}
+.dock .dockitem .nm:hover{text-decoration:underline}
+.dock .dockitem .d{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.dock .dockitem .btn{min-height:48px;padding:0 14px;font-size:.9375rem}
+.dock.pulse .dockitem[data-state=done]{animation:soft 1.6s ease-in-out 3}
+.demo-row{display:grid;gap:16px}
+@media (min-width:600px){.demo-row{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1025px){.demo-row{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- complete ---------- */
+.done-wrap{text-align:center;display:grid;gap:24px;justify-items:center;padding:40px 0}
+.done-wrap .art{width:min(320px,80%)}
+.done-wrap .art svg{width:100%;height:auto}
+.summary-list{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:center;color:var(--text2);font-weight:500}
+.summary-list span{display:inline-flex;gap:8px;align-items:center}
+.done-actions{display:grid;gap:12px;width:100%;max-width:420px}
+.fb{display:grid;gap:8px;justify-items:center}
+
+/* ---------- settings ---------- */
+.set-group{display:grid;gap:12px}
+.setting{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:16px;display:grid;gap:12px}
+.setting .head{display:flex;gap:12px;align-items:flex-start}
+.setting .head .ic{color:var(--text2);margin-top:2px}
+.setting .head p{color:var(--text2);font-size:.9375rem}
+.setting .head strong{display:block;font-size:1.0625rem}
+
+/* ---------- dialog ---------- */
+dialog{border:0;border-radius:var(--r-m);padding:0;width:min(560px,calc(100% - 24px));max-height:calc(100vh - 48px);background:var(--surface);color:var(--text);box-shadow:var(--shadow-high)}
+dialog::backdrop{background:rgba(41,51,41,.55)}
+dialog .dlg{padding:24px;display:grid;gap:16px}
+dialog .dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+dialog ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+dialog ol button{width:100%;text-align:left;display:flex;gap:12px;align-items:flex-start;min-height:56px;padding:12px 16px;border-radius:var(--r-m);border:2px solid var(--border);background:var(--surface);cursor:pointer}
+dialog ol button:hover{background:var(--hover)}
+dialog ol button[aria-current=step]{border-color:var(--brand);background:var(--sel)}
+dialog ol .n{font-weight:700;min-width:2ch}
+dialog ol .st{display:block;font-size:.8125rem;font-weight:700;color:var(--text2)}
+.quote{background:var(--bg2);border-radius:var(--r-m);padding:16px;font-size:1.125rem;font-weight:500}
+
+/* ---------- system ---------- */
+.sw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.sw{border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;background:var(--surface)}
+.sw i{display:block;height:56px;border-bottom:1px solid var(--border)}
+.sw div{padding:8px 12px;font-size:.8125rem;word-break:break-word}
+.sw b{display:block;font-size:.8125rem}
+.spec{display:grid;gap:12px;align-items:start}
+.spec-row{display:grid;gap:12px}
+@media (min-width:600px){.spec-row.c2{grid-template-columns:repeat(2,1fr)}.spec-row.c3{grid-template-columns:repeat(3,1fr)}}
+.sbar{display:flex;align-items:center;gap:12px;font-size:.875rem}
+.sbar i{display:block;height:16px;background:var(--brand2);border-radius:2px}
+footer.site-footer{border-top:1px solid var(--border);padding:24px 0 calc(var(--bar-h) + 24px);color:var(--text2);font-size:.875rem;margin-top:48px}
+footer.site-footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+/* ---------- Clean View & motion ---------- */
+body.clean .decor{display:none!important}
+body.clean .rcard .body{padding-top:64px}
+body.clean .rcard .save{top:8px}
+.rm *,.rm *::before,.rm *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+html[data-contrast=high] .rcard,html[data-contrast=high] .row,html[data-contrast=high] .panel,html[data-contrast=high] .setting{border-width:2px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div id="app"></div>
+<div id="dock" class="dock" role="region" aria-label="Active timers" hidden></div>
+<dialog id="dlg"></dialog>
+<div id="announce" class="sr" aria-live="polite" role="status"></div>
+<div id="alerts" class="sr" aria-live="assertive" role="alert"></div>
+<noscript><p style="padding:24px">MindFlow needs JavaScript to run this prototype.</p></noscript>
+
+<script>
+const ASSETS = {"icons":{"pot":"<path d='M4 10h16v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z'/><path d='M2 10h2M20 10h2M9 6h6'/>","pan":"<circle cx='9' cy='12' r='6'/><path d='M15 12h7'/>","spatula":"<rect x='8' y='3' width='8' height='8' rx='2'/><path d='M12 11v10'/>","bowl":"<path d='M3 11h18a9 9 0 0 1-18 0z'/><path d='M8 21h8'/>","fork":"<path d='M7 3v7a2 2 0 0 0 4 0V3M9 3v18M17 3c-2 2-3 5-3 8h3v10'/>","toaster":"<rect x='3' y='9' width='18' height='10' rx='2'/><path d='M8 9V6h8v3M7 14h4'/>","whisk":"<path d='M12 21v-6'/><path d='M12 15C6 15 7 3 12 3s6 12 0 12z'/>","colander":"<path d='M3 10h18a9 9 0 0 1-18 0z'/><path d='M8 14h.01M12 15h.01M16 14h.01M10 18h.01M14 18h.01'/>","spoon":"<ellipse cx='12' cy='7' rx='4' ry='5'/><path d='M12 12v9'/>","opener":"<circle cx='12' cy='12' r='8'/><path d='M12 4v16M4 12h16'/>","cutter":"<circle cx='9' cy='15' r='5'/><path d='M13 11l7-7'/>","search":"<circle cx='11' cy='11' r='7'/><path d='M20 20l-4-4'/>","mic":"<rect x='9' y='3' width='6' height='12' rx='3'/><path d='M5 11a7 7 0 0 0 14 0M12 18v3'/>","bookmark":"<path d='M6 4h12v17l-6-4-6 4z'/>","bookmarkFilled":"<path d='M6 4h12v17l-6-4-6 4z' fill='currentColor'/>","settings":"<path d='M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0'/><circle cx='16' cy='6' r='2'/><circle cx='10' cy='12' r='2'/><circle cx='18' cy='18' r='2'/>","check":"<path d='M5 12.5l4.5 4.5L19 7.5'/>","clock":"<circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/>","back":"<path d='M15 5l-7 7 7 7'/>","next":"<path d='M9 5l7 7-7 7'/>","close":"<path d='M6 6l12 12M18 6L6 18'/>","pause":"<path d='M9 5v14M15 5v14'/>","play":"<path d='M8 5l11 7-11 7z'/>","reset":"<path d='M4 12a8 8 0 1 0 3-6.2M4 4v4h4'/>","list":"<path d='M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01'/>","eye":"<path d='M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z'/><circle cx='12' cy='12' r='3'/>","bell":"<path d='M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4'/>","warning":"<path d='M12 3l10 18H2z'/><path d='M12 10v5M12 18h.01'/>","users":"<circle cx='9' cy='8' r='3.5'/><path d='M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6'/>","menu":"<path d='M4 7h16M4 12h16M4 17h16'/>","home":"<path d='M4 11l8-7 8 7v9H4z'/><path d='M10 20v-6h4v6'/>","leaf":"<path d='M5 19c0-9 5-14 15-14 0 10-5 15-14 15'/><path d='M5 19c3-5 6-8 10-10'/>","ingredients":"<path d='M5 8h14l-1.5 11h-11z'/><path d='M8 8a4 4 0 0 1 8 0'/>","sound":"<path d='M4 10v4h4l5 4V6L8 10zM16.5 9a4 4 0 0 1 0 6'/>","vibrate":"<rect x='8' y='3' width='8' height='18' rx='2'/><path d='M3 8v8M21 8v8'/>","text":"<path d='M4 19L10 5l6 14M6 14h8M17 12h4M19 12v7'/>","motion":"<circle cx='12' cy='12' r='3'/><path d='M3 12h3M18 12h3M12 3v3M12 18v3'/>","ruler":"<rect x='3' y='8' width='18' height='8' rx='1'/><path d='M7 8v3M11 8v4M15 8v3M19 8v4'/>","contrast":"<circle cx='12' cy='12' r='9'/><path d='M12 3v18' /><path d='M12 3a9 9 0 0 1 0 18z' fill='currentColor'/>","info":"<circle cx='12' cy='12' r='9'/><path d='M12 11v5M12 8h.01'/>","target":"<circle cx='12' cy='12' r='9'/><circle cx='12' cy='12' r='4'/>","sparkle":"<path d='M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z'/>","knife":"<path d='M4 20l11-11a4 4 0 0 1 5-2l-2 6z'/><path d='M3 21l3-3'/>","board":"<rect x='4' y='6' width='16' height='13' rx='2'/><path d='M9 3v3M15 12h.01'/>"},"logo":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'><circle cx='16' cy='16' r='15' fill='#506447'/><path d='M9 21c0-7 4-11 13-11 0 8-4 12-11 12' stroke='#F8F7F2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><path d='M9 22c2.5-4 5-6.5 8-8' stroke='#F8F7F2' stroke-width='2' stroke-linecap='round'/></svg>","illustrations":{"pasta":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'><rect width='640' height='440' fill='#E6EBDA'/><ellipse cx='320' cy='370' rx='230' ry='26' fill='#293329' opacity='.08'/><ellipse cx='320' cy='250' rx='215' ry='125' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><ellipse cx='320' cy='245' rx='170' ry='92' fill='#C65A40'/><g fill='none' stroke='#EBCB82' stroke-width='11' stroke-linecap='round'><path d='M210 250c30-60 90-70 130-40s60 60 90 20'/><path d='M230 285c40-30 80-20 120 5s60 10 80-20'/><path d='M250 225c40 30 90 35 130 10'/><path d='M270 200c30-20 70-25 110-5'/></g><g fill='#4F7A44'><ellipse cx='300' cy='225' rx='30' ry='14' transform='rotate(-25 300 225)'/><ellipse cx='345' cy='238' rx='26' ry='12' transform='rotate(20 345 238)'/></g><g fill='#F4E7C0'><circle cx='265' cy='260' r='5'/><circle cx='385' cy='255' r='5'/><circle cx='330' cy='280' r='5'/><circle cx='290' cy='290' r='4'/></g></svg>","eggs":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'><rect width='640' height='440' fill='#F5EEDC'/><ellipse cx='320' cy='375' rx='230' ry='24' fill='#293329' opacity='.08'/><ellipse cx='320' cy='250' rx='225' ry='128' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><rect x='185' y='170' width='270' height='170' rx='40' fill='#D9A55E'/><rect x='200' y='184' width='240' height='142' rx='30' fill='#EBC98B'/><g fill='#F3D35F'><circle cx='250' cy='230' r='34'/><circle cx='300' cy='215' r='38'/><circle cx='355' cy='225' r='36'/><circle cx='400' cy='245' r='30'/><circle cx='280' cy='270' r='34'/><circle cx='340' cy='275' r='34'/><circle cx='230' cy='275' r='26'/></g><g fill='#FBE9A0' opacity='.8'><circle cx='290' cy='205' r='12'/><circle cx='350' cy='215' r='10'/><circle cx='260' cy='255' r='9'/></g><g fill='#4F7A44'><ellipse cx='330' cy='250' rx='9' ry='4' transform='rotate(-30 330 250)'/><ellipse cx='312' cy='256' rx='8' ry='4' transform='rotate(30 312 256)'/></g></svg>","soup":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'><rect width='640' height='440' fill='#F8EBD3'/><ellipse cx='320' cy='380' rx='220' ry='22' fill='#293329' opacity='.08'/><path d='M90 220h460a230 170 0 0 1-460 0z' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><ellipse cx='320' cy='220' rx='230' ry='62' fill='#E39A47'/><ellipse cx='320' cy='222' rx='200' ry='46' fill='#EDAE5C'/><path d='M230 222c30-30 60-30 90 0s60 30 90 0' fill='none' stroke='#FFF6E4' stroke-width='9' stroke-linecap='round'/><g fill='#4F7A44'><ellipse cx='400' cy='215' rx='16' ry='6' transform='rotate(-20 400 215)'/><ellipse cx='420' cy='228' rx='14' ry='5' transform='rotate(25 420 228)'/></g><g fill='none' stroke='#293329' stroke-width='5' stroke-linecap='round' opacity='.25'><path d='M270 150c-12-20 12-30 0-50'/><path d='M330 150c-12-20 12-30 0-50'/><path d='M390 150c-12-20 12-30 0-50'/></g></svg>","quesadilla":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'><rect width='640' height='440' fill='#E9EDDF'/><ellipse cx='320' cy='375' rx='235' ry='22' fill='#293329' opacity='.08'/><ellipse cx='310' cy='245' rx='225' ry='130' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><path d='M150 280a165 165 0 0 1 320 0z' fill='#E2B467'/><path d='M165 268a150 150 0 0 1 290 0z' fill='#F1D58C'/><path d='M190 268a125 125 0 0 1 240 0z' fill='#EBC067'/><g fill='#4A3B32'><circle cx='250' cy='250' r='9'/><circle cx='290' cy='236' r='9'/><circle cx='335' cy='244' r='9'/><circle cx='372' cy='256' r='9'/></g><path d='M170 300a150 150 0 0 0 290 0' fill='#E2B467' transform='translate(0 -18)'/><circle cx='505' cy='290' r='42' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><circle cx='505' cy='290' r='30' fill='#C65A40'/><g fill='#4F7A44'><circle cx='495' cy='284' r='5'/><circle cx='514' cy='296' r='5'/></g></svg>","noodles":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'><rect width='640' height='440' fill='#E4ECE2'/><ellipse cx='320' cy='380' rx='220' ry='22' fill='#293329' opacity='.08'/><path d='M95 215h450a225 165 0 0 1-450 0z' fill='#FFFFFF' stroke='#D9DED2' stroke-width='3'/><ellipse cx='320' cy='215' rx='225' ry='58' fill='#E6D3A0'/><g fill='none' stroke='#C9A55E' stroke-width='8' stroke-linecap='round'><path d='M190 215c30-40 60-40 90 0s60 40 90 0 40-30 60-10'/><path d='M200 230c30-30 60-30 90 0s60 30 90 0'/></g><g fill='#7CA25F'><circle cx='250' cy='205' r='11'/><circle cx='290' cy='195' r='11'/><circle cx='340' cy='210' r='11'/><circle cx='385' cy='200' r='11'/><circle cx='305' cy='225' r='11'/></g><g fill='#F8F7F2'><circle cx='270' cy='225' r='3'/><circle cx='330' cy='190' r='3'/><circle cx='370' cy='225' r='3'/></g><path d='M470 190l50-18-14 46z' fill='#B9C95B'/><path d='M478 192l30-10-9 30z' fill='#D8E29A'/></svg>","success":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 240'><circle cx='160' cy='116' r='96' fill='#E4EADB'/><circle cx='160' cy='116' r='72' fill='#EEF1E8'/><path d='M80 130h160a80 62 0 0 1-160 0z' fill='#FFFFFF' stroke='#506447' stroke-width='4'/><ellipse cx='160' cy='130' rx='80' ry='16' fill='#C65A40'/><path d='M130 128c10-10 20-10 30 0s20 10 30 0' fill='none' stroke='#EBCB82' stroke-width='6' stroke-linecap='round'/><g fill='none' stroke='#506447' stroke-width='4' stroke-linecap='round'><path d='M135 100c-8-12 8-18 0-30'/><path d='M165 96c-8-12 8-18 0-30'/><path d='M195 100c-8-12 8-18 0-30'/></g><path d='M222 60c0-14 10-22 26-22 0 14-10 24-24 22z' fill='#65785B'/><path d='M80 66c0-12 9-19 22-19 0 12-8 20-20 19z' fill='#C8D2BC'/></svg>"}};
+const TOKENS = {"$description":"MindFlow design tokens. Primitives are raw values; semantic tokens reference primitives with {path} aliases. Compatible with W3C-style token tooling (Tokens Studio, Style Dictionary).","primitive":{"color":{"cream":{"50":"#FBFAF6","100":"#F8F7F2","200":"#EEF1E8","300":"#E7EBDD","400":"#D9DED2"},"sage":{"100":"#E4EADB","200":"#C8D2BC","300":"#A3B394","500":"#65785B","600":"#506447","700":"#3E5036","800":"#2F3E2A"},"ink":{"400":"#767D72","500":"#626B60","600":"#4F594D","800":"#293329","900":"#1B231B"},"white":"#FFFFFF","black":"#000000","green":{"100":"#DCEADD","600":"#426B4A"},"amber":{"50":"#FDF5E6","100":"#F8E9D2","600":"#B87A36","700":"#98652E"},"red":{"100":"#F5DEDB","600":"#A3443D"},"teal":{"100":"#D8EAEE","600":"#356F7D","700":"#2C5F6B"},"blue":{"100":"#DCE9ED","600":"#426B78"},"forest":{"700":"#355D43"}}},"color":{"background":{"primary":{"value":"#F8F7F2","ref":"{primitive.color.cream.100}"},"secondary":{"value":"#EEF1E8","ref":"{primitive.color.cream.200}"},"inverse":{"value":"#293329","ref":"{primitive.color.ink.800}"}},"surface":{"default":{"value":"#FFFFFF","ref":"{primitive.color.white}"},"subtle":{"value":"#E7EBDD","ref":"{primitive.color.cream.300}"},"selected":{"value":"#E4EADB","ref":"{primitive.color.sage.100}"},"completed":{"value":"#EEF1E8","ref":"{primitive.color.cream.200}"},"disabled":{"value":"#E7EBDD","ref":"{primitive.color.cream.300}"}},"brand":{"primary":{"value":"#506447","ref":"{primitive.color.sage.600}","note":"Darkened from the #65785B starting token so white text on primary buttons reaches 6.4:1. #65785B is kept as brand.accent for large decorative use."},"primaryHover":{"value":"#3E5036","ref":"{primitive.color.sage.700}"},"primaryPressed":{"value":"#2F3E2A","ref":"{primitive.color.sage.800}"},"accent":{"value":"#65785B","ref":"{primitive.color.sage.500}"},"secondary":{"value":"#C8D2BC","ref":"{primitive.color.sage.200}"},"onPrimary":{"value":"#FFFFFF","ref":"{primitive.color.white}"}},"text":{"primary":{"value":"#293329","ref":"{primitive.color.ink.800}"},"secondary":{"value":"#4F594D","ref":"{primitive.color.ink.600}","note":"Darkened from #626B60 for AA on all backgrounds (7.3:1 on primary background)."},"muted":{"value":"#626B60","ref":"{primitive.color.ink.500}","note":"Muted metadata only. 4.9:1 on background.primary."},"disabled":{"value":"#767D72","ref":"{primitive.color.ink.400}"},"onInverse":{"value":"#F8F7F2","ref":"{primitive.color.cream.100}"},"link":{"value":"#2C5F6B","ref":"{primitive.color.teal.700}"}},"border":{"default":{"value":"#D9DED2","ref":"{primitive.color.cream.400}"},"strong":{"value":"#8A9484","note":"Form-control and toggle outlines (3.3:1 on white)."},"selected":{"value":"#506447","ref":"{primitive.color.sage.600}"}},"feedback":{"success":{"value":"#426B4A","ref":"{primitive.color.green.600}"},"successSurface":{"value":"#DCEADD","ref":"{primitive.color.green.100}"},"warning":{"value":"#98652E","ref":"{primitive.color.amber.700}"},"warningSurface":{"value":"#F8E9D2","ref":"{primitive.color.amber.100}"},"error":{"value":"#A3443D","ref":"{primitive.color.red.600}"},"errorSurface":{"value":"#F5DEDB","ref":"{primitive.color.red.100}"},"info":{"value":"#426B78","ref":"{primitive.color.blue.600}"},"infoSurface":{"value":"#DCE9ED","ref":"{primitive.color.blue.100}"},"warningText":{"value":"#6F4519","note":"Text on warningSurface and timer.expiredSurface. 7.2:1."}},"focus":{"ring":{"value":"#355D43","ref":"{primitive.color.forest.700}"},"halo":{"value":"#FFFFFF","ref":"{primitive.color.white}"}},"state":{"hover":{"value":"#EEF1E8"},"pressed":{"value":"#E4EADB"},"disabled":{"value":"#E7EBDD"},"selected":{"value":"#E4EADB"},"completed":{"value":"#EEF1E8"}},"timer":{"running":{"value":"#2C5F6B","ref":"{primitive.color.teal.700}"},"runningSurface":{"value":"#D8EAEE","ref":"{primitive.color.teal.100}"},"paused":{"value":"#4F594D","ref":"{primitive.color.ink.600}"},"pausedSurface":{"value":"#E7EBDD","ref":"{primitive.color.cream.300}"},"expired":{"value":"#98652E","ref":"{primitive.color.amber.700}"},"expiredSurface":{"value":"#F8E9D2","ref":"{primitive.color.amber.100}"}}},"theme":{"light":{"$description":"Default theme. Uses the color.* semantic tokens above."},"highContrast":{"color.background.primary":"#FFFFFF","color.background.secondary":"#F2F2F2","color.surface.default":"#FFFFFF","color.surface.subtle":"#EDEDED","color.brand.primary":"#1F3A1A","color.brand.primaryHover":"#142610","color.text.primary":"#000000","color.text.secondary":"#1A1A1A","color.text.muted":"#333333","color.border.default":"#4A4A4A","color.focus.ring":"#0B3D91","color.timer.running":"#0B3D5C","color.timer.expired":"#6B3F00"}},"font":{"family":{"primary":"Inter, system-ui, -apple-system, 'Segoe UI', sans-serif","accessible":"'Atkinson Hyperlegible', Inter, system-ui, sans-serif"},"weight":{"regular":400,"medium":500,"semibold":600,"bold":700}},"typography":{"display":{"size":"clamp(2.5rem, 5vw, 3rem)","sizeRange":"40-48px","weight":700,"lineHeight":1.15,"letterSpacing":"-0.02em"},"heading1":{"size":"2rem","sizePx":32,"weight":600,"lineHeight":1.25},"heading2":{"size":"1.5rem","sizePx":24,"weight":600,"lineHeight":1.3},"heading3":{"size":"1.25rem","sizePx":20,"weight":600,"lineHeight":1.4},"bodyLarge":{"size":"1.125rem","sizePx":18,"weight":400,"lineHeight":1.6},"body":{"size":"1rem","sizePx":16,"weight":400,"lineHeight":1.6},"supporting":{"size":"0.875rem","sizePx":14,"weight":500,"lineHeight":1.5},"label":{"size":"0.8125rem","sizePx":13,"weight":500,"lineHeight":1.4,"letterSpacing":"0.01em"},"cookingInstruction":{"size":"clamp(1.25rem, 2.2vw, 1.625rem)","sizeRangePx":"20-26","weight":500,"lineHeight":1.6},"timerDigits":{"size":"2.5rem","sizePx":40,"weight":700,"lineHeight":1,"fontFeature":"tabular-nums"},"measure":{"readingWidth":"65ch"}},"spacing":{"1":"4px","2":"8px","3":"12px","4":"16px","6":"24px","8":"32px","10":"40px","12":"48px","16":"64px","20":"80px"},"size":{"touchTarget":"48px","touchTargetComfortable":"56px","containerMax":"1120px","containerReading":"65ch","gutterMobile":"16px","gutterTablet":"24px","gutterDesktop":"32px"},"radius":{"none":"0px","small":"8px","medium":"12px","large":"20px","pill":"999px"},"border":{"width":{"thin":"1px","medium":"2px","thick":"3px"}},"shadow":{"none":"none","low":"0 1px 2px rgba(41,51,41,0.06), 0 1px 1px rgba(41,51,41,0.04)","medium":"0 4px 12px rgba(41,51,41,0.08), 0 1px 3px rgba(41,51,41,0.06)","high":"0 12px 32px rgba(41,51,41,0.14), 0 2px 6px rgba(41,51,41,0.08)","dock":"0 -4px 20px rgba(41,51,41,0.10)"},"focus":{"ringWidth":"3px","ringOffset":"2px","ringStyle":"solid","css":"outline: 3px solid #355D43; outline-offset: 2px; box-shadow: 0 0 0 5px #FFFFFF;"},"breakpoint":{"mobile":{"max":"599px","columns":4,"margin":"16px","gutter":"16px"},"tablet":{"min":"600px","max":"1024px","columns":8,"margin":"24px","gutter":"24px"},"desktop":{"min":"1025px","columns":12,"margin":"32px","gutter":"32px"}},"motion":{"duration":{"instant":"0ms","fast":"120ms","normal":"200ms","slow":"320ms"},"easing":{"standard":"cubic-bezier(0.2, 0, 0, 1)"},"reducedMotion":"All durations resolve to 0ms and non-essential transitions are removed when prefers-reduced-motion or the in-app setting is on."},"component":{"button":{"primary":{"default":{"background":"{color.brand.primary}","text":"{color.brand.onPrimary}","height":"56px","radius":"{radius.medium}"},"hover":{"background":"{color.brand.primaryHover}"},"pressed":{"background":"{color.brand.primaryPressed}"},"focused":{"outline":"{focus.css}"},"disabled":{"background":"{color.surface.disabled}","text":"{color.text.disabled}"},"loading":{"background":"{color.brand.primary}","indicator":"spinner (static dots when reduced motion)"}},"secondary":{"default":{"background":"{color.surface.default}","border":"2px solid {color.brand.primary}","text":"{color.brand.primary}"},"hover":{"background":"{color.state.hover}"},"pressed":{"background":"{color.state.pressed}"}}},"ingredientRow":{"default":{"background":"{color.surface.default}","minHeight":"56px"},"hover":{"background":"{color.state.hover}"},"focus":{"outline":"{focus.css}"},"checked":{"text":"{color.text.secondary}","textDecoration":"line-through","checkbox":"filled with check icon"},"completedCollapsed":{"background":"{color.state.completed}","group":"Ready"}},"stepperCard":{"standard":{},"withIngredients":{},"withTimer":{},"withSafetyNote":{"noteBackground":"{color.feedback.warningSurface}","noteIcon":"warning triangle + text label"},"completed":{"badge":"Done check + label"}},"timer":{"idle":{"label":"Start {n} min timer","accent":"{color.brand.primary}"},"running":{"accent":"{color.timer.running}","surface":"{color.timer.runningSurface}","controls":["Pause"]},"paused":{"accent":"{color.timer.paused}","surface":"{color.timer.pausedSurface}","controls":["Resume","Reset"]},"completed":{"accent":"{color.timer.expired}","surface":"{color.timer.expiredSurface}","controls":["Dismiss"],"label":"Time's up"},"dismissed":{"visible":false}},"recipeCard":{"default":{},"hover":{"shadow":"{shadow.medium}"},"focus":{"outline":"{focus.css}"},"saved":{"icon":"filled bookmark + 'Saved' label"},"continueCooking":{"badge":"Step n of m"}},"progress":{"notStarted":{"fill":"{color.surface.subtle}"},"inProgress":{"fill":"{color.brand.primary}"},"completed":{"fill":"{color.feedback.success}","icon":"check"}},"toggle":{"on":{"track":"{color.brand.primary}","label":"On"},"off":{"track":"#8A9484","label":"Off"},"focused":{"outline":"{focus.css}"},"disabled":{"track":"{color.surface.disabled}"}}},"figma":{"variableCollections":[{"name":"Primitives","modes":["Value"],"source":"primitive.color.*"},{"name":"Semantic Color","modes":["Light","High Contrast"],"source":"color.* and theme.highContrast"},{"name":"Spacing","modes":["Value"],"source":"spacing.*"},{"name":"Radius","modes":["Value"],"source":"radius.*"},{"name":"Breakpoints","modes":["Mobile","Tablet","Desktop"],"source":"breakpoint.*"}],"pages":["Foundations","Components","Desktop Screens","Mobile Screens","Prototype Flow"]}};
+
+/* ================= data ================= */
+const RECIPES = [
+ {id:'tomato-pasta',title:'One-Pot Tomato Garlic Pasta',art:'pasta',meal:'Dinner',desc:'Pasta cooks right in the sauce. One pot, no draining, and almost no cleanup.',
+  diff:'Low effort',prep:5,cook:20,servings:2,tags:['low','onepot','nochop'],
+  equipment:[{n:'Large pot with lid',i:'pot'},{n:'Wooden spoon',i:'spoon'},{n:'Can opener',i:'opener'}],
+  ingredients:[
+   {id:'oil',n:'olive oil',q:2,u:'tbsp'},{id:'garlic',n:'jarred minced garlic',q:1,u:'tbsp'},{id:'tom',n:'canned crushed tomatoes',q:400,u:'g'},
+   {id:'water',n:'water',q:500,u:'ml'},{id:'salt',n:'salt',q:1,u:'tsp'},{id:'basil',n:'dried basil',q:1,u:'tsp'},
+   {id:'spag',n:'spaghetti',q:200,u:'g'},{id:'parm',n:'grated parmesan',q:30,u:'g'}],
+  steps:[
+   {t:'Set your pot on the stove. Add the olive oil and the garlic. Turn the heat to medium.',ing:['oil','garlic'],eq:['Large pot with lid'],safety:'Keep the heat at medium. Garlic burns fast on high heat.'},
+   {t:'Stir the garlic for 1 minute, until it smells good.',ing:[],eq:['Wooden spoon'],timer:60,tl:'Stir garlic'},
+   {t:'Pour in the tomatoes and the water. Add the salt and basil. Stir, then bring it to a gentle bubble.',ing:['tom','water','salt','basil'],eq:['Can opener','Wooden spoon']},
+   {t:'Add the spaghetti. Press it down until it is covered, then turn the heat to medium-low.',ing:['spag'],eq:['Wooden spoon'],safety:'Hot liquid can splash. Lower the pasta in slowly.'},
+   {t:'Let it simmer for 10 minutes. Stir every few minutes so the pasta does not stick.',ing:[],eq:['Wooden spoon'],timer:600,tl:'Simmer pasta'},
+   {t:'Turn off the heat. Stir in the parmesan and rest for 2 minutes. Then taste and serve.',ing:['parm'],eq:[],timer:120,tl:'Rest'}]},
+ {id:'soft-eggs',title:'Soft Scrambled Eggs on Toast',art:'eggs',meal:'Breakfast',desc:'Creamy eggs on warm toast. Five ingredients and ten minutes.',
+  diff:'Very low effort',prep:3,cook:7,servings:2,tags:['low','fifteen','five','nochop'],
+  equipment:[{n:'Nonstick pan',i:'pan'},{n:'Spatula',i:'spatula'},{n:'Bowl',i:'bowl'},{n:'Fork',i:'fork'},{n:'Toaster',i:'toaster'}],
+  ingredients:[{id:'egg',n:'large eggs',q:4,u:'count'},{id:'milk',n:'milk',q:2,u:'tbsp'},{id:'salt',n:'salt',q:.25,u:'tsp'},{id:'butter',n:'butter',q:20,u:'g'},{id:'bread',n:'slices of bread',q:2,u:'count'}],
+  steps:[
+   {t:'Crack the eggs into a bowl. Add the milk and salt.',ing:['egg','milk','salt'],eq:['Bowl']},
+   {t:'Beat with a fork for about 30 seconds, until it is one even yellow.',ing:[],eq:['Fork']},
+   {t:'Put the bread in the toaster and press it down. Toast it to the color you like.',ing:['bread'],eq:['Toaster']},
+   {t:'Put the pan on the stove over low heat. Add the butter and let it melt.',ing:['butter'],eq:['Nonstick pan'],safety:'Use low heat. The pan gets hot quickly.'},
+   {t:'Pour in the eggs. Stir slowly for 2 minutes, pushing from the edges to the middle.',ing:[],eq:['Spatula'],timer:120,tl:'Stir eggs'},
+   {t:'Take the pan off the heat while the eggs still look slightly wet. They keep cooking. Spoon them onto the toast.',ing:[],eq:['Spatula']}]},
+ {id:'lentil-soup',title:'Coconut Red Lentil Soup',art:'soup',meal:'Dinner',desc:'A warm, gently spiced soup that makes leftovers for the week.',
+  diff:'Medium focus',prep:10,cook:30,servings:4,tags:['onepot'],
+  equipment:[{n:'Large pot with lid',i:'pot'},{n:'Wooden spoon',i:'spoon'},{n:'Knife',i:'knife'},{n:'Cutting board',i:'board'},{n:'Strainer',i:'colander'},{n:'Can opener',i:'opener'}],
+  ingredients:[{id:'onion',n:'small onion',q:1,u:'count'},{id:'oil',n:'cooking oil',q:1,u:'tbsp'},{id:'garlic',n:'jarred minced garlic',q:1,u:'tbsp'},{id:'curry',n:'curry powder',q:1,u:'tbsp'},
+   {id:'lent',n:'red lentils',q:200,u:'g'},{id:'broth',n:'vegetable broth',q:750,u:'ml'},{id:'tom',n:'canned diced tomatoes',q:400,u:'g'},{id:'coco',n:'canned coconut milk',q:400,u:'ml'},{id:'salt',n:'salt',q:1,u:'tsp'},{id:'lemon',n:'lemon juice',q:1,u:'tbsp'}],
+  steps:[
+   {t:'Cut the onion into small pieces.',ing:['onion'],eq:['Knife','Cutting board'],safety:'Curl your fingertips under while you cut. Go slowly.'},
+   {t:'Rinse the lentils in the strainer under cold water for about 30 seconds.',ing:['lent'],eq:['Strainer']},
+   {t:'Put the pot on medium heat with the oil. Add the onion, garlic, and curry powder. Stir for 3 minutes.',ing:['oil','onion','garlic','curry'],eq:['Large pot with lid','Wooden spoon'],timer:180,tl:'Stir onion',safety:'Spices can burn. If it smells sharp, turn the heat down.'},
+   {t:'Pour in the broth, tomatoes, and coconut milk. Add the lentils and salt. Stir.',ing:['broth','tom','coco','lent','salt'],eq:['Can opener','Wooden spoon']},
+   {t:'Bring it to a gentle bubble. Then turn the heat to low and put the lid on halfway.',ing:[],eq:['Large pot with lid']},
+   {t:'Simmer for 20 minutes. Stir once or twice. The lentils will turn soft.',ing:[],eq:['Wooden spoon'],timer:1200,tl:'Simmer soup'},
+   {t:'Turn off the heat. Stir in the lemon juice. Taste, and add a little more salt if you like.',ing:['lemon'],eq:['Wooden spoon']}]},
+ {id:'bean-quesadillas',title:'Black Bean Quesadillas',art:'quesadilla',meal:'Lunch',desc:'Crispy outside, melty inside. Nothing to chop.',
+  diff:'Very low effort',prep:5,cook:10,servings:2,tags:['low','fifteen','five','nochop'],
+  equipment:[{n:'Nonstick pan',i:'pan'},{n:'Spatula',i:'spatula'},{n:'Bowl',i:'bowl'},{n:'Fork',i:'fork'},{n:'Can opener',i:'opener'},{n:'Pizza cutter',i:'cutter'}],
+  ingredients:[{id:'tort',n:'flour tortillas',q:4,u:'count'},{id:'beans',n:'canned black beans',q:400,u:'g'},{id:'cheese',n:'shredded cheese',q:150,u:'g'},{id:'salsa',n:'salsa',q:4,u:'tbsp'},{id:'oil',n:'cooking oil',q:1,u:'tbsp'}],
+  steps:[
+   {t:'Open the can of beans and pour off the liquid. Tip the beans into a bowl.',ing:['beans'],eq:['Can opener','Bowl']},
+   {t:'Add the salsa. Mash with a fork until it is chunky, not smooth.',ing:['salsa'],eq:['Fork']},
+   {t:'Lay two tortillas flat. Spread half the bean mix on each, then add the cheese. Cover each with another tortilla.',ing:['tort','cheese'],eq:[]},
+   {t:'Warm the pan over medium heat with the oil. Cook one quesadilla for 2 minutes, until golden underneath.',ing:['oil'],eq:['Nonstick pan'],timer:120,tl:'Cook first side',safety:'The pan and oil are hot. Flip away from you.'},
+   {t:'Flip it with the spatula and cook 2 more minutes. Then repeat with the second quesadilla.',ing:[],eq:['Spatula'],timer:120,tl:'Cook second side'},
+   {t:'Slide them onto a board and cut into wedges with the pizza cutter.',ing:[],eq:['Pizza cutter']}]},
+ {id:'peanut-noodles',title:'Peanut Noodle Bowl',art:'noodles',meal:'Dinner',desc:'Creamy peanut sauce on noodles with edamame. No chopping at all.',
+  diff:'Low effort',prep:5,cook:10,servings:2,tags:['low','fifteen','nochop'],
+  equipment:[{n:'Large pot',i:'pot'},{n:'Strainer',i:'colander'},{n:'Bowl',i:'bowl'},{n:'Spoon',i:'spoon'}],
+  ingredients:[{id:'noodles',n:'dried noodles',q:200,u:'g'},{id:'edamame',n:'frozen edamame',q:150,u:'g'},{id:'pb',n:'peanut butter',q:4,u:'tbsp'},{id:'soy',n:'soy sauce',q:3,u:'tbsp'},{id:'lime',n:'lime juice',q:2,u:'tbsp'},{id:'sesame',n:'sesame oil',q:1,u:'tsp'}],
+  steps:[
+   {t:'Fill the pot with water and bring it to a boil on high heat.',ing:[],eq:['Large pot'],safety:'Steam is hot. Lift the lid away from your face.'},
+   {t:'Add the noodles and the frozen edamame. Cook for 4 minutes, stirring once.',ing:['noodles','edamame'],eq:['Large pot','Spoon'],timer:240,tl:'Cook noodles'},
+   {t:'While they cook, stir the peanut butter, soy sauce, lime juice, and sesame oil in a bowl. Add 3 tablespoons of the hot cooking water and stir until smooth.',ing:['pb','soy','lime','sesame'],eq:['Bowl','Spoon']},
+   {t:'Drain the noodles and edamame in the strainer.',ing:[],eq:['Strainer'],safety:'Pour away from your body. The water is very hot.'},
+   {t:'Tip the noodles into the bowl. Toss until every strand is covered, then serve.',ing:[],eq:['Bowl','Spoon']}]}
+];
+const FILTERS=[['low','Low Effort'],['fifteen','15 Minutes'],['onepot','One Pot'],['five','5 Ingredients'],['nochop','No Chopping']];
+
+/* ================= state ================= */
+const KEY='mindflow.v1';
+const DEF_PREFS={clean:false,textSize:'standard',font:'inter',contrast:'standard',sound:true,vibrate:true,visual:true,motion:false,units:'metric'};
+function defaults(){return {prefs:{...DEF_PREFS},saved:[],completed:{},session:null,checked:{},scale:{},timers:{},feedback:{}}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');const d=defaults();return {...d,...s,prefs:{...d.prefs,...(s.prefs||{})}}}catch(e){return defaults()}}
+let S=load();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let homeQ='',homeF=new Set(),lastSummary=null,menuOpen=false;
+
+/* ================= helpers ================= */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const R=id=>RECIPES.find(r=>r.id===id);
+const total=r=>r.prep+r.cook;
+const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ASSETS.icons[n]||''}</svg>`;
+const art=k=>ASSETS.illustrations[k];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function fmtNum(n,den=8){const r=Math.round(n*den-0.001)/den;const w=Math.floor(r+1e-9);const f=Math.round((r-w)*8);const FR=['','⅛','¼','⅜','½','⅝','¾','⅞'];if(!w&&!f)return '0';return w&&f?`${w} ${FR[f]}`:w?`${w}`:FR[f]}
+function qtyText(i,scale,units){
+  let v=i.q*scale,u=i.u;
+  if(u==='g'){ if(units==='imperial'){const oz=v/28.35;return oz>=16?`${fmtNum(oz/16,4)} lb`:`${fmtNum(oz,4)} oz`} return `${v>=100?Math.round(v/5)*5:Math.round(v)} g`}
+  if(u==='ml'){ if(units==='imperial'){ if(v>=180)return `${fmtNum(v/240,4)} ${v/240>1.1?'cups':'cup'}`; return `${fmtNum(v/29.57,4)} fl oz`} return `${v>=100?Math.round(v/5)*5:Math.round(v)} ml`}
+  if(u==='count')return fmtNum(v);
+  return `${fmtNum(v)} ${u}`;
+}
+const scaleOf=id=>S.scale[id]||1;
+const chk=id=>(S.checked[id]=S.checked[id]||{});
+function tfmt(s){s=Math.max(0,Math.ceil(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;const p=n=>String(n).padStart(2,'0');return h?`${h}:${p(m)}:${p(x)}`:`${p(m)}:${p(x)}`}
+function tword(secs){return secs%60===0?`${secs/60} min`:`${secs} sec`}
+function announce(t){const a=$('#announce');a.textContent='';setTimeout(()=>a.textContent=t,30)}
+function hasSession(id){return S.session&&S.session.recipeId===id}
+function startSession(id){S.session={recipeId:id,step:0,done:[],showResume:false,startedAt:Date.now()};save()}
+function pctReady(r){const c=chk(r.id);const n=r.ingredients.length+r.equipment.length;const d=r.ingredients.filter(i=>c['i:'+i.id]).length+r.equipment.filter(e=>c['e:'+e.n]).length;return {n,d}}
+
+/* ================= preferences ================= */
+function applyPrefs(){
+  const p=S.prefs,h=document.documentElement;
+  h.dataset.contrast=p.contrast;h.dataset.font=p.font;
+  h.dataset.size=p.textSize==='large'?'large':p.textSize==='xl'?'xl':'standard';
+  h.classList.toggle('rm',!!p.motion);
+  document.body.classList.toggle('clean',!!p.clean);
+}
+const canVibrate=()=>'vibrate' in navigator;
+
+/* ================= timers ================= */
+function tStart(rid,step,label,secs){const id=rid+':'+step;S.timers[id]={id,rid,step,label,total:secs,state:'running',endsAt:Date.now()+secs*1000,remaining:secs};save()}
+function tAct(act,id){
+  const t=S.timers[id];if(!t)return;const now=Date.now();
+  if(act==='tPause'&&t.state==='running'){t.remaining=Math.max(0,Math.ceil((t.endsAt-now)/1000));t.state='paused'}
+  else if(act==='tResume'&&t.state==='paused'){t.endsAt=now+t.remaining*1000;t.state='running'}
+  else if(act==='tReset'){delete S.timers[id]}
+  else if(act==='tDismiss'){t.state='dismissed'}
+  save();renderDock();refreshTimerViews();
+}
+function liveRemaining(t){return t.state==='running'?Math.max(0,Math.ceil((t.endsAt-Date.now())/1000)):t.state==='paused'?t.remaining:0}
+function timerLabel(t){return t.rid==='demo'?t.label:`Step ${Number(t.step)+1} · ${t.label}`}
+function timerCard(t,opts={}){
+  const st=t.state, lbl={running:'Running',paused:'Paused',done:"Time's up",dismissed:'Finished'}[st], icon={running:'clock',paused:'pause',done:'bell',dismissed:'check'}[st];
+  let ctl='';
+  if(st==='running')ctl=`<button class="btn btn-secondary" data-act="tPause" data-tid="${t.id}">${ic('pause')} Pause</button>`;
+  if(st==='paused')ctl=`<button class="btn btn-primary" data-act="tResume" data-tid="${t.id}">${ic('play')} Resume</button><button class="btn btn-secondary" data-act="tReset" data-tid="${t.id}">${ic('reset')} Reset</button>`;
+  if(st==='done')ctl=`<button class="btn btn-primary" data-act="tDismiss" data-tid="${t.id}">${ic('check')} Dismiss</button>`;
+  if(st==='dismissed')ctl=`<button class="btn btn-secondary" data-act="tReset" data-tid="${t.id}">${ic('reset')} Start again</button>`;
+  const digits=st==='done'?`<div class="digits" aria-hidden="true">00:00</div>`:st==='dismissed'?'':`<div class="digits" role="timer" data-timer-time="${t.id}" aria-label="${esc(t.label)}, time left">${tfmt(liveRemaining(t))}</div>`;
+  return `<div class="timer" data-state="${st}"><div class="status">${ic(icon)}<span>${st==='done'?`Time's up: ${esc(t.label)}`:lbl}</span></div>${digits}<div class="tlabel">${esc(timerLabel(t))}${st==='paused'?' · paused':''}</div><div class="tctl">${ctl}</div></div>`;
+}
+function idleTimer(rid,step,label,secs){return `<button class="btn btn-secondary timer-idle" data-act="tStart" data-rid="${rid}" data-step="${step}" data-label="${esc(label)}" data-secs="${secs}">${ic('clock')} Start ${tword(secs)} timer</button>`}
+function renderDock(){
+  const d=$('#dock');const list=Object.values(S.timers).filter(t=>t.state!=='dismissed');
+  if(!list.length){d.hidden=true;d.innerHTML='';return}
+  d.hidden=false;
+  list.sort((a,b)=>(a.state==='done'?-1:0)-(b.state==='done'?-1:0));
+  d.innerHTML=list.map(t=>{
+    const st=t.state, ico={running:'clock',paused:'pause',done:'bell'}[st], word={running:'Running',paused:'Paused',done:"Time's up"}[st];
+    const name=esc(timerLabel(t));
+    const nm=t.rid==='demo'?`<span class="nm">${name}</span>`:`<a class="nm" href="#/cook/${t.rid}" aria-label="${name}, go to this recipe">${name}</a>`;
+    let ctl=st==='running'?`<button class="btn btn-secondary btn-icon" data-act="tPause" data-tid="${t.id}" aria-label="Pause ${name}">${ic('pause')}</button>`
+      :st==='paused'?`<button class="btn btn-primary btn-icon" data-act="tResume" data-tid="${t.id}" aria-label="Resume ${name}">${ic('play')}</button>`
+      :`<button class="btn btn-primary" data-act="tDismiss" data-tid="${t.id}" aria-label="Dismiss ${name}">Dismiss</button>`;
+    return `<div class="dockitem" data-state="${st}"><div class="info"><span class="where">${ic(ico)} ${word}</span>${nm}<span class="d" data-timer-time="${t.id}" ${st==='done'?'aria-hidden="true"':''}>${st==='done'?'00:00':tfmt(liveRemaining(t))}</span></div>${ctl}</div>`}).join('');
+}
+function refreshTimerViews(){const {page}=parse();if(['cook','timers'].includes(page))render({keepScroll:true})}
+function fireAlert(t){
+  const msg=`Timer finished: ${timerLabel(t)}.`;
+  const al=$('#alerts');al.textContent='';setTimeout(()=>al.textContent=msg,30);
+  if(S.prefs.sound)beep();
+  if(S.prefs.vibrate&&canVibrate())try{navigator.vibrate([250,120,250,120,250])}catch(e){}
+  const d=$('#dock');d.classList.toggle('pulse',!!S.prefs.visual);
+}
+let actx=null;
+function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const now=actx.currentTime;[0,.35,.7].forEach(o=>{const os=actx.createOscillator(),g=actx.createGain();os.type='sine';os.frequency.value=660;g.gain.setValueAtTime(.0001,now+o);g.gain.exponentialRampToValueAtTime(.25,now+o+.02);g.gain.exponentialRampToValueAtTime(.0001,now+o+.28);os.connect(g).connect(actx.destination);os.start(now+o);os.stop(now+o+.3)})}catch(e){}}
+setInterval(()=>{
+  let changed=false;
+  Object.values(S.timers).forEach(t=>{
+    if(t.state==='running'){
+      const rem=Math.ceil((t.endsAt-Date.now())/1000);
+      if(rem<=0){t.state='done';t.remaining=0;changed=true;fireAlert(t)}
+      else $$(`[data-timer-time="${t.id}"]`).forEach(e=>e.textContent=tfmt(rem));
+    }
+  });
+  if(changed){save();renderDock();refreshTimerViews()}
+},250);
+
+/* ================= views ================= */
+function parse(){const h=location.hash.replace(/^#\/?/,'');const [page,id]=h.split('/');return {page:page||'home',id}}
+function header(page){
+  const links=[['#/','Discover','home','home'],['#/saved','Saved','bookmark','saved'],['#/settings','Settings','settings','settings']];
+  const nav=links.map(l=>`<a class="navlink" href="${l[0]}" ${page===l[3]||(l[3]==='home'&&['home','recipe','prep'].includes(page))?'aria-current="page"':''}>${ic(l[2])}${l[1]}</a>`).join('');
+  return `<header class="site-header"><div class="wrap"><a class="logo" href="#/" aria-label="MindFlow home">${ASSETS.logo}<span>MindFlow</span></a>
+  <nav class="nav-desktop" aria-label="Main">${nav}</nav>
+  <button class="btn btn-quiet btn-icon menu-btn" data-act="menu" aria-expanded="${menuOpen}" aria-controls="mmenu" aria-label="${menuOpen?'Close menu':'Open menu'}">${ic(menuOpen?'close':'menu')}</button></div>
+  <div class="mobile-menu" id="mmenu" ${menuOpen?'':'hidden'}><nav class="wrap" aria-label="Mobile">${nav}</nav></div></header>`;
+}
+const footer=()=>`<footer class="site-footer"><div class="wrap"><span>MindFlow · one manageable step at a time</span><a href="#/system">Design system</a></div></footer>`;
+const diffIcon=d=>d==='Medium focus'?'target':'leaf';
+function saveBtn(r,force){const sv=force===undefined?S.saved.includes(r.id):force;return `<button class="save" data-act="toggleSave" data-id="${r.id}" data-key="save:${r.id}" aria-pressed="${sv}" aria-label="Save ${esc(r.title)}">${ic(sv?'bookmarkFilled':'bookmark')}${sv?'<span>Saved</span>':''}</button>`}
+function card(r,o={}){
+  const cls=(o.cls||'');
+  const cont=o.cont?`<span class="pill">${ic('play')} Step ${(S.session?S.session.step:2)+1} of ${r.steps.length}</span>`:'';
+  return `<article class="rcard ${o.cont?'is-continue':''} ${cls}"><div class="thumb decor" aria-hidden="true">${art(r.art)}</div>${saveBtn(r,o.saved)}
+  <div class="body"><h3 class="h3"><a href="#/recipe/${r.id}">${esc(r.title)}</a></h3>
+  <div class="facts-row"><span>${ic('clock')}${total(r)} min</span><span>${ic('ingredients')}${r.ingredients.length} ingredients</span></div>
+  <div><span class="pill">${ic(diffIcon(r.diff))}${r.diff}</span> ${cont}</div></div></article>`;
+}
+function matches(r){
+  const q=homeQ.trim().toLowerCase();
+  if(q&&!(r.title+' '+r.desc+' '+r.ingredients.map(i=>i.n).join(' ')).toLowerCase().includes(q))return false;
+  for(const f of homeF)if(!r.tags.includes(f))return false;return true;
+}
+function resultsHTML(){
+  const list=RECIPES.filter(matches);const filtering=homeQ.trim()||homeF.size;
+  if(!list.length)return `<div class="empty" role="status">${ic('search')}<h2 class="h3">Nothing matches yet</h2><p class="lead">Try fewer filters or a simpler word, like “pasta” or “eggs”.</p><button class="btn btn-secondary" data-act="clearFilters">Clear search and filters</button></div>`;
+  let h='';const feat=R('tomato-pasta');
+  if(!filtering){
+    h+=`<section class="featured decor" aria-labelledby="feat-h"><div class="thumb" aria-hidden="true">${art(feat.art)}</div><div class="body"><p class="eyebrow">A gentle place to start</p><h2 id="feat-h" class="h1"><a href="#/recipe/${feat.id}">${esc(feat.title)}</a></h2><p class="lead">${esc(feat.desc)}</p><div class="facts-row"><span>${ic('clock')}${total(feat)} min</span><span>${ic('ingredients')}${feat.ingredients.length} ingredients</span><span>${ic('leaf')}${feat.diff}</span></div></div></section>`;
+  }
+  const rest=filtering?list:list.filter(r=>r.id!==feat.id);
+  h+=`<section class="section" aria-labelledby="all-h"><h2 id="all-h" class="h2">${filtering?`${list.length} ${list.length===1?'recipe':'recipes'}`:'More simple recipes'}</h2><div class="grid">${rest.map(r=>card(r)).join('')}</div></section>`;
+  return h;
+}
+function vHome(){
+  const ses=S.session&&R(S.session.recipeId);
+  const cont=ses?`<section class="continue" aria-labelledby="cont-h"><div class="meta"><p class="eyebrow">Continue Cooking</p><h2 id="cont-h" class="h3">${esc(ses.title)}</h2>
+   ${progressHTML(S.session.step,ses.steps.length)}</div><a class="btn btn-primary" href="#/cook/${ses.id}" data-act="resume">Pick up where I left off</a></section>`:'';
+  const chips=FILTERS.map(f=>`<button class="chip" data-act="filter" data-f="${f[0]}" data-key="chip:${f[0]}" aria-pressed="${homeF.has(f[0])}">${ic('check')}${f[1]}</button>`).join('');
+  return `<div class="wrap"><section class="hero" aria-labelledby="home-h"><h1 id="home-h" class="display" tabindex="-1">Let’s make something simple.</h1>
+  <p class="lead decor">Short recipes, one step at a time, with everything you need on one calm screen.</p>
+  <form class="search" role="search" data-form="search"><div class="field"><label for="q" class="sr">Search recipes</label>${ic('search')}<input id="q" type="search" placeholder="Search recipes or ingredients" autocomplete="off" value="${esc(homeQ)}"></div>
+  <button type="button" class="btn btn-icon" data-act="voice" aria-label="Search by voice">${ic('mic')}</button></form>
+  <div class="voice-status support" id="voice-status" role="status"></div>
+  <div class="chips" role="group" aria-label="Quick filters">${chips}</div>${cont}</section>
+  <div id="results" aria-live="polite">${resultsHTML()}</div></div>${footer()}`;
+}
+function progressHTML(step,n,label){
+  const pct=Math.round(step/n*100);
+  return `<div class="progress"><div class="cap"><span>${label||`Step ${step+1} of ${n}`}</span><span class="support">${pct}% done</span></div><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${step}" aria-label="Cooking progress"><i style="width:${pct}%"></i></div></div>`;
+}
+function seg(name,opts,cur,label){return `<div class="seg" role="group" aria-label="${label}">${opts.map(o=>`<button data-act="${name}" data-v="${o[0]}" data-key="${name}:${o[0]}" aria-pressed="${String(cur)===String(o[0])}">${o[1]}</button>`).join('')}</div>`}
+function ingRow(r,i,o={}){
+  const c=chk(r.id)['i:'+i.id];
+  return `<li><label class="row"><input type="checkbox" data-act="check" data-id="${r.id}" data-k="i:${i.id}" data-key="chk:i:${i.id}" ${c?'checked':''}><span class="box">${ic('check')}</span><span class="qty">${qtyText(i,scaleOf(r.id),S.prefs.units)}</span><span class="name">${esc(i.n)}</span><span class="state">${ic('check')} Ready</span></label></li>`;
+}
+function eqRow(r,e){
+  const c=chk(r.id)['e:'+e.n];
+  return `<li><label class="row"><input type="checkbox" data-act="check" data-id="${r.id}" data-k="e:${esc(e.n)}" data-key="chk:e:${esc(e.n)}" ${c?'checked':''}><span class="box">${ic('check')}</span><span class="eq">${ic(e.i)}</span><span class="name">${esc(e.n)}</span><span class="state">${ic('check')} Ready</span></label></li>`;
+}
+function vRecipe(r){
+  const sc=scaleOf(r.id),sv=r.servings*sc,ses=hasSession(r.id)?S.session:null;
+  const cta=ses&&ses.step>0?`<a class="btn btn-primary btn-block" href="#/cook/${r.id}" data-act="resume">${ic('play')} Continue: Step ${ses.step+1} of ${r.steps.length}</a>`
+    :`<button class="btn btn-primary btn-block" data-act="startCook" data-id="${r.id}">${ic('play')} Start Cooking</button>`;
+  return `<div class="wrap"><div class="crumb"><a class="btn btn-quiet" href="#/">${ic('back')} All recipes</a></div>
+  <div class="split"><div class="summary stack"><div class="hero-img decor" aria-hidden="true">${art(r.art)}</div>
+   <div><span class="pill">${ic(diffIcon(r.diff))}${r.diff}</span><h1 class="h1" id="recipe-h" tabindex="-1" style="margin-top:8px">${esc(r.title)}</h1></div>
+   <p class="lead decor">${esc(r.desc)}</p>
+   <dl class="facts"><div><dt>Prep</dt><dd>${r.prep} min</dd></div><div><dt>Cook</dt><dd>${r.cook} min</dd></div><div><dt>Total</dt><dd>${total(r)} min</dd></div><div><dt>Serves</dt><dd>${fmtNum(sv)}</dd></div></dl>
+   <div class="ctas">${cta}<a class="btn btn-secondary btn-block" href="#/prep/${r.id}">${ic('ingredients')} Prep First</a>
+    ${ses&&ses.step>0?`<button class="btn btn-quiet" data-act="startOver" data-id="${r.id}">Start over from step 1</button>`:''}</div>
+   <div class="switch-row"><div><strong>Clean View</strong><p class="support">Hides photos and extra text. Timers and safety notes stay.</p></div>${sw('clean',S.prefs.clean)}</div>
+   <button class="btn btn-secondary btn-block" data-act="toggleSave" data-id="${r.id}" data-key="save:${r.id}" aria-pressed="${S.saved.includes(r.id)}">${ic(S.saved.includes(r.id)?'bookmarkFilled':'bookmark')} ${S.saved.includes(r.id)?'Saved':'Save recipe'}</button>
+    </div>
+  <div class="stack-lg"><div class="controls"><div class="grp"><span class="label">Servings</span>${seg('scale',[[.5,'0.5×'],[1,'1×'],[2,'2×']],sc,'Portion size')}</div><div class="grp"><span class="label">Units</span>${seg('units',[['metric','Metric'],['imperial','Imperial']],S.prefs.units,'Measurement units')}</div></div>
+   <section aria-labelledby="ing-h"><h2 id="ing-h" class="h2" style="margin-bottom:12px">Ingredients <span class="support">(${r.ingredients.length})</span></h2><ul class="checklist">${r.ingredients.map(i=>ingRow(r,i)).join('')}</ul></section>
+   <section aria-labelledby="eq-h"><h2 id="eq-h" class="h2" style="margin-bottom:12px">Equipment</h2><ul class="checklist">${r.equipment.map(e=>eqRow(r,e)).join('')}</ul></section>
+   <details class="disclose decor"><summary>Preview the ${r.steps.length} steps</summary><div class="in"><ol>${r.steps.map(s=>`<li>${esc(s.t)}</li>`).join('')}</ol></div></details>
+  </div></div></div>${footer()}`;
+}
+function sw(pref,on,o={}){return `<button class="switch" role="switch" aria-checked="${on}" data-act="pref" data-pref="${pref}" data-key="pref:${pref}" ${o.disabled?'disabled':''} ${o.label?`aria-label="${o.label}"`:''}><span class="track"></span><span class="txt" aria-hidden="true">${on?'On':'Off'}</span></button>`}
+function checklistGroup(r,kind){
+  const items=kind==='i'?r.ingredients:r.equipment;
+  const k=x=>kind==='i'?'i:'+x.id:'e:'+x.n;
+  const c=chk(r.id);const pend=items.filter(x=>!c[k(x)]),done=items.filter(x=>c[k(x)]);
+  const row=x=>kind==='i'?ingRow(r,x):eqRow(r,x);
+  return `<ul class="checklist" aria-label="${kind==='i'?'Ingredients to gather':'Equipment to gather'}">${pend.map(row).join('')||`<li class="support" style="padding:8px 0">${ic('check')} All ${kind==='i'?'ingredients':'equipment'} ready.</li>`}</ul>
+  ${done.length?`<details class="ready" ${prepOpen[kind]?'open':''} data-ready="${kind}"><summary data-key="ready:${kind}">${ic('check')} Ready (${done.length})</summary><ul class="checklist">${done.map(row).join('')}</ul></details>`:''}`;
+}
+let prepOpen={i:false,e:false};
+function vPrep(r){
+  const {n,d}=pctReady(r);const all=d===n;
+  return `<div class="wrap narrow"><div class="prep-head stack"><a class="btn btn-quiet" href="#/recipe/${r.id}" style="margin-left:-16px">${ic('back')} Back to recipe</a>
+  <p class="eyebrow">${esc(r.title)} · serves ${fmtNum(r.servings*scaleOf(r.id))}</p><h1 class="h1 display" style="font-size:clamp(2rem,4vw,2.5rem)" id="prep-h" tabindex="-1">Let’s get everything ready.</h1>
+  <p class="lead">Gather these items before turning on the stove.</p>
+  <div class="progress ${all?'is-complete':''}"><div class="cap"><span>${all?ic('check')+' Everything is ready':`${d} of ${n} ready`}</span><span class="support">${Math.round(d/n*100)}%</span></div><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${d}" aria-label="Preparation progress"><i style="width:${d/n*100}%"></i></div></div></div>
+  <div class="stack-lg"><section aria-labelledby="pi-h"><h2 id="pi-h" class="h2" style="margin-bottom:12px">Ingredients</h2>${checklistGroup(r,'i')}</section>
+  <section aria-labelledby="pe-h"><h2 id="pe-h" class="h2" style="margin-bottom:12px">Equipment</h2>${checklistGroup(r,'e')}</section></div>
+  <div class="sticky-cta"><button class="btn btn-primary btn-block" data-act="startCook" data-id="${r.id}" data-keep="1">Everything Ready — Let’s Cook!</button>
+  ${all?'':`<p class="support" style="text-align:center">${n-d} left. You can start anytime.</p>`}
+  <a class="btn btn-secondary btn-block" href="#/recipe/${r.id}">Back to recipe</a></div></div>`;
+}
+function vCook(r){
+  if(!hasSession(r.id))startSession(r.id);
+  const ses=S.session,i=Math.min(ses.step,r.steps.length-1),n=r.steps.length,s=r.steps[i],isDone=ses.done.includes(i);
+  const sc=scaleOf(r.id);
+  const ings=s.ing.map(id=>r.ingredients.find(x=>x.id===id)).filter(Boolean);
+  const eqs=s.eq.map(nm=>r.equipment.find(e=>e.n===nm)).filter(Boolean);
+  let timer='';
+  if(s.timer){const id=r.id+':'+i,t=S.timers[id];timer=t?timerCard(t):idleTimer(r.id,i,s.tl,s.timer)}
+  const segs=`<div class="segs" aria-hidden="true">${r.steps.map((_,k)=>`<i class="${k<i||ses.done.includes(k)&&k!==i?'d':k===i?'c':''}"></i>`).join('')}</div>`;
+  const banner=ses.showResume?`<div class="banner" role="region" aria-label="Welcome back">${ic('info')}<p>Welcome back. You’re on step ${i+1} of ${n}.</p><button class="btn btn-secondary" data-act="whereAmI">Where was I?</button><button class="btn btn-quiet" data-act="dismissResume">Got it</button></div>`:'';
+  return `<header class="focus-head"><div class="wrap"><a class="btn btn-quiet" href="#/recipe/${r.id}" aria-label="Exit cooking. Your place is saved">${ic('back')} Exit</a><div class="t">${esc(r.title)}</div><button class="btn btn-quiet" data-act="whereAmI" data-key="where">${ic('target')}<span>Where was I?</span></button></div></header>
+  <main id="main" tabindex="-1"><div class="wrap">
+   <div class="stack" style="padding-top:16px">${banner}<div class="progress"><div class="cap"><span>Step ${i+1} of ${n}</span><button class="btn btn-quiet" data-act="review" data-key="review" style="min-height:48px">${ic('list')} Review all steps</button></div>${segs}</div></div>
+   <div class="cook-layout"><section class="stepcard ${isDone?'is-done':''}" aria-labelledby="stepH">
+     <h1 class="step-title" id="stepH" tabindex="-1">Step ${i+1} of ${n}${isDone?`<span class="badge">${ic('check')} Done</span>`:''}</h1>
+     <p class="instruction">${esc(s.t)}</p>
+     ${s.safety?`<div class="note warn" role="note">${ic('warning')}<div><strong>Safety</strong>${esc(s.safety)}</div></div>`:''}
+     ${timer}
+   </section>
+   <aside class="side" aria-label="Details for this step">
+    <details class="disclose" open><summary>${ic('ingredients')} For this step</summary><div class="in"><ul class="panel" style="border:0;padding:0">${ings.length?ings.map(x=>`<li><span class="q">${qtyText(x,sc,S.prefs.units)}</span> ${esc(x.n)}</li>`).join(''):`<li class="none">Nothing new to measure.</li>`}</ul></div></details>
+    <details class="disclose" ${eqs.length?'open':''}><summary>${ic('pot')} Equipment</summary><div class="in"><ul class="panel" style="border:0;padding:0">${eqs.length?eqs.map(e=>`<li>${ic(e.i)} ${esc(e.n)}</li>`).join(''):`<li class="none">No equipment needed.</li>`}</ul></div></details>
+   </aside></div></div></main>
+  <div class="actionbar"><div class="wrap"><button class="btn btn-secondary" data-act="prev" ${i===0?'disabled':''}>${ic('back')} Previous</button><button class="btn btn-primary" data-act="next" data-key="next">${i===n-1?`${ic('check')} Finish`:`Next step ${ic('next')}`}</button></div></div>`;
+}
+function vDone(r){
+  const sm=lastSummary&&lastSummary.id===r.id?lastSummary:{steps:r.steps.length,timers:0};
+  const sv=S.saved.includes(r.id),fb=S.feedback[r.id];
+  return `<div class="wrap narrow"><div class="done-wrap"><div class="art decor" aria-hidden="true">${art('success')}</div>
+  <h1 class="display" id="done-h" tabindex="-1">You did it. ${r.meal} is ready.</h1><p class="lead">${esc(r.title)} · every step finished.</p>
+  <div class="summary-list"><span>${ic('check')}${r.steps.length} steps completed</span><span>${ic('clock')}About ${total(r)} min</span><span>${ic('users')}Serves ${fmtNum(r.servings*scaleOf(r.id))}</span></div>
+  <div class="done-actions"><button class="btn btn-primary btn-block" data-act="toggleSave" data-id="${r.id}" aria-pressed="${sv}" data-key="save:${r.id}">${ic(sv?'bookmarkFilled':'bookmark')} ${sv?'Saved to your recipes':'Save this recipe'}</button>
+   <button class="btn btn-secondary btn-block" data-act="cookAgain" data-id="${r.id}">${ic('reset')} Cook it again</button><a class="btn btn-quiet btn-block" href="#/">${ic('home')} Back to home</a></div>
+  <div class="fb" role="group" aria-labelledby="fb-h"><p id="fb-h" class="support">Optional: how did the difficulty feel?</p>${seg('feedback',[['easier','Easier than I thought'],['right','Just right'],['harder','A bit hard']],fb||'','Difficulty feedback')}${fb?`<p class="support" role="status">Thanks. That helps us tune recipes.</p>`:''}</div></div></div>`;
+}
+function vSaved(){
+  const list=S.saved.map(R).filter(Boolean);
+  return `<div class="wrap"><section class="hero"><h1 class="display" id="saved-h" tabindex="-1">Saved recipes</h1></section>${list.length?`<div class="grid">${list.map(r=>card(r)).join('')}</div>`:`<div class="empty">${ic('bookmark')}<h2 class="h3">Nothing saved yet</h2><p class="lead">Tap the bookmark on any recipe to keep it here.</p><a class="btn btn-primary" href="#/">Find a recipe</a></div>`}</div>${footer()}`;
+}
+function setting(icon,title,desc,ctl){return `<div class="setting"><div class="head">${ic(icon)}<div><strong>${title}</strong><p>${desc}</p></div></div>${ctl}</div>`}
+function vSettings(){
+  const p=S.prefs;
+  return `<div class="wrap narrow"><section class="hero"><h1 class="display" id="set-h" tabindex="-1">Settings</h1><p class="lead">Make MindFlow feel right for you. Changes save automatically.</p></section>
+  <div class="stack-lg">
+  <section class="set-group" aria-labelledby="s1"><h2 id="s1" class="h2">Reading</h2>
+   ${setting('eye','Clean View','Hides photos and extra text. Ingredients, safety notes, controls, and timers always stay.',sw('clean',p.clean,{label:'Clean View'}))}
+   ${setting('text','Text size','Applies everywhere, including cooking steps.',seg('textSize',[['standard','Standard'],['large','Large'],['xl','Extra large']],p.textSize,'Text size'))}
+   ${setting('text','Typeface','Atkinson Hyperlegible is designed for easy letter recognition.',seg('font',[['inter','Inter'],['atkinson','Atkinson Hyperlegible']],p.font,'Typeface'))}
+   ${setting('contrast','Contrast','High contrast uses darker text and stronger borders.',seg('contrast',[['standard','Standard'],['high','High']],p.contrast,'Contrast'))}
+   ${setting('ruler','Measurement units','Used for ingredient amounts.',seg('units',[['metric','Metric'],['imperial','Imperial']],p.units,'Measurement units'))}</section>
+  <section class="set-group" aria-labelledby="s2"><h2 id="s2" class="h2">Timer alerts</h2>
+   ${setting('sound','Sound','A short chime when a timer finishes.',sw('sound',p.sound,{label:'Sound'}))}
+   ${setting('vibrate','Vibration','A short buzz when a timer finishes.'+(canVibrate()?'':' Not available on this device or browser.'),sw('vibrate',p.vibrate&&canVibrate(),{disabled:!canVibrate(),label:'Vibration'}))}
+   ${setting('bell','Visual alert','Highlights the finished timer in the timer dock. A message is always shown.',sw('visual',p.visual,{label:'Visual alert'}))}
+   <div><button class="btn btn-secondary" data-act="testAlert">${ic('bell')} Test my alerts</button></div></section>
+  <section class="set-group" aria-labelledby="s3"><h2 id="s3" class="h2">Motion</h2>
+   ${setting('motion','Reduce motion','Turns off animations. MindFlow also follows your device setting.',sw('motion',p.motion,{label:'Reduce motion'}))}</section>
+  <section class="set-group" aria-labelledby="s4"><h2 id="s4" class="h2">Your recipes</h2><a class="btn btn-secondary" href="#/saved">${ic('bookmark')} Saved recipes (${S.saved.length})</a><a class="btn btn-quiet" href="#/timers" style="justify-content:flex-start">${ic('clock')} Timers</a></section></div></div>${footer()}`;
+}
+function vTimers(){
+  const list=Object.values(S.timers).filter(t=>t.state!=='dismissed');
+  const fake=(st,rem)=>({id:'ref-'+st,rid:'demo',step:0,label:'Reference',total:600,state:st,remaining:rem,endsAt:Date.now()+rem*1000});
+  const ref=(st,t)=>`<div><p class="label" style="margin-bottom:8px">${t}</p><div inert>${st==='idle'?idleTimer('demo',0,'Reference',600):timerCard(fake(st,st==='paused'?372:st==='running'?548:0))}</div></div>`;
+  return `<div class="wrap"><section class="hero"><h1 class="display" id="tm-h" tabindex="-1">Timers</h1><p class="lead">Timers keep running while you move between steps and recipes.</p></section>
+  <section class="stack" aria-labelledby="tm1"><h2 id="tm1" class="h2">Active now</h2>
+  ${list.length?`<div class="demo-row">${list.map(t=>timerCard(t)).join('')}</div>`:`<div class="empty">${ic('clock')}<h3 class="h3">No timers running</h3><p class="lead">Timers you start while cooking appear here and in the timer dock.</p></div>`}
+  <div style="display:flex;gap:12px;flex-wrap:wrap">${S.timers['demo:10min']&&S.timers['demo:10min'].state!=='dismissed'?'':idleTimer('demo','10min','Practice timer',600).replace('timer-idle','').replace('class="btn btn-secondary "','class="btn btn-secondary"')}<button class="btn btn-quiet" data-act="demoShort">${ic('bell')} Try a 10 second timer</button></div></section>
+  <section class="section" aria-labelledby="tm2"><h2 id="tm2" class="h2">How timers look</h2><div class="demo-row" style="margin-top:16px">${ref('idle','Idle')}${ref('running','Running')}${ref('paused','Paused')}${ref('done','Completed')}</div></section></div>${footer()}`;
+}
+function vSystem(){
+  const T=TOKENS;
+  const groups=[];(function walk(o,p){for(const k in o){const v=o[k];if(v&&typeof v==='object'){if(typeof v.value==='string'&&v.value[0]==='#')groups.push([[...p,k].join('.'),v.value]);else walk(v,[...p,k])}}})(T.color,['color']);
+  const byG={};groups.forEach(g=>{const k=g[0].split('.')[1];(byG[k]=byG[k]||[]).push(g)});
+  const swatches=Object.entries(byG).map(([k,arr])=>`<h3 class="h3" style="margin:24px 0 12px">${k}</h3><div class="sw-grid">${arr.map(a=>`<div class="sw"><i style="background:${a[1]}"></i><div><b>${a[0]}</b>${a[1]}</div></div>`).join('')}</div>`).join('');
+  const ty=Object.entries(T.typography).filter(([k,v])=>v.sizePx||v.sizeRange||v.sizeRangePx).map(([k,v])=>`<div class="sw" style="padding:12px 16px"><span style="font-size:${v.size};font-weight:${v.weight};line-height:${v.lineHeight};display:block">Cook one step at a time</span><span class="label">typography.${k} · ${v.sizePx||v.sizeRange||v.sizeRangePx}${v.sizePx?'px':''} · ${v.weight} · lh ${v.lineHeight}</span></div>`).join('');
+  const sp=Object.entries(T.spacing).map(([k,v])=>`<div class="sbar"><span style="width:90px">spacing.${k}</span><i style="width:${v}"></i><span>${v}</span></div>`).join('');
+  const rd=Object.entries(T.radius).filter(([k])=>k!=='none').map(([k,v])=>`<div style="text-align:center"><div style="width:72px;height:72px;border:2px solid var(--brand);background:var(--bg2);border-radius:${v}"></div><span class="label">${k}<br>${v}</span></div>`).join('');
+  const sh=Object.entries(T.shadow).filter(([k])=>k!=='none'&&k!=='dock').map(([k,v])=>`<div style="text-align:center"><div style="width:96px;height:72px;background:var(--surface);border-radius:12px;box-shadow:${v}"></div><span class="label">${k}</span></div>`).join('');
+  const r=RECIPES[0];const fakeT=st=>({id:'sys-'+st,rid:'demo',step:0,label:'Simmer pasta',total:600,state:st,remaining:372,endsAt:Date.now()+372000});
+  const btns=`<div class="spec-row c3"><button class="btn btn-primary">Default</button><button class="btn btn-primary is-hover">Hover</button><button class="btn btn-primary is-pressed">Pressed</button><button class="btn btn-primary is-focus">Focused</button><button class="btn btn-primary" disabled>Disabled</button><button class="btn btn-primary is-loading" aria-label="Loading"><span class="dots"><i></i><i></i><i></i></span></button><button class="btn btn-secondary">Secondary</button><button class="btn btn-secondary is-hover">Secondary hover</button><button class="btn btn-quiet">Quiet</button></div>`;
+  const rows=`<ul class="checklist"><li><label class="row"><span class="box">${ic('check')}</span><span class="qty">2 tbsp</span><span class="name">Default</span></label></li><li><label class="row is-hover"><span class="box">${ic('check')}</span><span class="qty">2 tbsp</span><span class="name">Hover</span></label></li><li><label class="row is-focus"><span class="box">${ic('check')}</span><span class="qty">2 tbsp</span><span class="name">Focus</span></label></li><li><label class="row is-checked"><span class="box">${ic('check')}</span><span class="qty">2 tbsp</span><span class="name">Checked</span><span class="state">${ic('check')} Ready</span></label></li></ul><details class="ready" open><summary>${ic('check')} Ready (1) · completed and collapsed group</summary></details>`;
+  const tg=`<div class="spec-row c2"><div>${sw('x',true).replace('data-act="pref"','inert')}</div><div>${sw('x',false).replace('data-act="pref"','inert')}</div><div><button class="switch is-focus" role="switch" aria-checked="true" inert><span class="track"></span><span class="txt">On · focused</span></button></div><div><button class="switch" role="switch" aria-checked="false" disabled><span class="track"></span><span class="txt">Disabled</span></button></div></div>`;
+  const pr=`<div class="spec-row c3"><div class="progress"><div class="cap"><span>Not started</span><span class="support">0%</span></div><div class="bar"><i style="width:0"></i></div></div><div class="progress"><div class="cap"><span>In progress</span><span class="support">50%</span></div><div class="bar"><i style="width:50%"></i></div></div><div class="progress is-complete"><div class="cap"><span>${ic('check')} Completed</span><span class="support">100%</span></div><div class="bar"><i style="width:100%"></i></div></div></div>`;
+  const stp=`<div class="spec-row c2"><section class="stepcard"><h3 class="step-title">Step 3 of 6</h3><p class="instruction">Standard instruction.</p></section><section class="stepcard is-done"><h3 class="step-title">Step 2 of 6 <span class="badge">${ic('check')} Done</span></h3><p class="instruction">Completed step.</p></section><section class="stepcard"><h3 class="step-title">Step 4 of 6</h3><p class="instruction">Instruction with a safety note.</p><div class="note warn">${ic('warning')}<div><strong>Safety</strong>Hot liquid can splash.</div></div></section><section class="stepcard"><h3 class="step-title">Step 5 of 6</h3><p class="instruction">Instruction with a timer.</p>${timerCard(fakeT('running'))}</section></div>`;
+  const rc=`<div class="spec-row c3"><div>${card(RECIPES[0],{saved:false})}<p class="label" style="margin-top:8px">Default</p></div><div>${card(RECIPES[1],{cls:'is-hover is-focus',saved:false})}<p class="label" style="margin-top:8px">Hover and focus</p></div><div>${card(RECIPES[3],{saved:true})}<p class="label" style="margin-top:8px">Saved: filled bookmark plus “Saved” label</p></div></div><div style="margin-top:16px;max-width:420px">${card(RECIPES[2],{cont:true,saved:false}).replace('is-continue','is-continue')}<p class="label" style="margin-top:8px">Continue Cooking (needs an active session to show step; shown here as example)</p></div>`;
+  const tm=`<div class="spec-row c3">${['running','paused','done'].map(s=>`<div inert>${timerCard(fakeT(s))}</div>`).join('')}</div>`;
+  const fb=`<div class="spec-row c2"><div class="note info">${ic('info')}<div><strong>Info</strong>Your place is saved.</div></div><div class="note warn">${ic('warning')}<div><strong>Warning</strong>Pan is hot.</div></div><div class="badge">${ic('check')} Success</div><div class="pill">${ic('leaf')} Low effort</div></div>`;
+  return `<div class="wrap"><section class="hero"><h1 class="display" id="sys-h" tabindex="-1">Design system</h1><p class="lead">Foundations and components, generated from <code>tokens.json</code>.</p></section>
+  <div class="stack-lg"><section><h2 class="h1">Foundations</h2><h3 class="h3" style="margin-top:16px">Color</h3>${swatches}</section>
+  <section><h3 class="h2">Typography</h3><div class="spec" style="margin-top:12px">${ty}</div></section>
+  <section><h3 class="h2">Spacing, radius, shadow</h3><div class="spec" style="margin:12px 0">${sp}</div><div style="display:flex;gap:24px;flex-wrap:wrap;margin:24px 0">${rd}</div><div style="display:flex;gap:24px;flex-wrap:wrap;padding:8px">${sh}</div></section>
+  <section><h3 class="h2">Breakpoints</h3><p class="lead">Mobile below 600px · Tablet 600–1024px · Desktop above 1024px. Gutters 16 / 24 / 32px. Columns 4 / 8 / 12.</p></section>
+  <section><h2 class="h1">Components</h2><h3 class="h3" style="margin:16px 0 12px">Buttons</h3>${btns}<h3 class="h3" style="margin:32px 0 12px">Ingredient row</h3>${rows}<h3 class="h3" style="margin:32px 0 12px">Toggle</h3>${tg}<h3 class="h3" style="margin:32px 0 12px">Progress</h3>${pr}<h3 class="h3" style="margin:32px 0 12px">Stepper card</h3>${stp}<h3 class="h3" style="margin:32px 0 12px">Timer</h3>${tm}<h3 class="h3" style="margin:32px 0 12px">Recipe card</h3>${rc}<h3 class="h3" style="margin:32px 0 12px">Feedback and badges</h3>${fb}</section></div></div>${footer()}`;
+}
+
+/* ================= render & routing ================= */
+const VIEWS={home:vHome,recipe:vRecipe,prep:vPrep,cook:vCook,done:vDone,settings:vSettings,saved:vSaved,timers:vTimers,system:vSystem};
+let lastPage=null,focusFallback=null;
+function render(o={}){
+  const {page,id}=parse();
+  const needsR=['recipe','prep','cook','done'].includes(page);
+  const r=needsR?R(id):null;
+  if(needsR&&!r){location.hash='#/';return}
+  if(!VIEWS[page]){location.hash='#/';return}
+  const prevKey=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.key:null;
+  const y=window.scrollY;
+  document.body.classList.toggle('cooking',page==='cook');
+  document.title=(r?r.title+' · ':{home:'',settings:'Settings · ',saved:'Saved · ',timers:'Timers · ',system:'Design system · '}[page]||'')+'MindFlow';
+  const body=VIEWS[page](r);
+  if(page==='cook')$('#app').innerHTML=body;
+  else $('#app').innerHTML=header(page)+`<main id="main" tabindex="-1">${body}</main>`;
+  const changed=page+':'+(id||'')!==lastPage;
+  lastPage=page+':'+(id||'');
+  if(changed&&!o.keepScroll){window.scrollTo(0,0);const h=$('#app h1');if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
+  else{
+    window.scrollTo(0,y);
+    let t=prevKey&&$(`[data-key="${CSS.escape(prevKey)}"]`);
+    if(!t&&focusFallback)t=$(`[data-key="${CSS.escape(focusFallback)}"]`);
+    if(t)t.focus({preventScroll:true});
+  }
+  focusFallback=null;
+  const bar=$('.actionbar');document.body.style.setProperty('--dock-bottom',bar?(bar.offsetHeight+16)+'px':'16px');
+}
+window.addEventListener('hashchange',()=>{menuOpen=false;render()});
+
+/* ================= dialogs ================= */
+const dlg=()=>$('#dlg');
+function openDlg(html){const d=dlg();d.innerHTML=html;const h=$('h2',d);if(h){h.id='dlg-h';d.setAttribute('aria-labelledby','dlg-h')}if(!d.open)d.showModal()}
+dlg().addEventListener('click',e=>{if(e.target===dlg())dlg().close()});
+function whereHTML(r){
+  const ses=S.session,i=ses.step,n=r.steps.length,{d,n:tot}=pctReady(r);
+  const act=Object.values(S.timers).filter(t=>t.rid===r.id&&t.state!=='dismissed');
+  return `<div class="dlg"><div class="dlg-head"><h2 class="h2">Where was I?</h2><button class="btn btn-quiet btn-icon" data-act="closeDlg" aria-label="Close">${ic('close')}</button></div>
+  <p>You’re on <strong>step ${i+1} of ${n}</strong> of ${esc(r.title)}.</p><p class="quote">${esc(r.steps[i].t)}</p>
+  ${i>0?`<p class="support">Last finished: step ${i}. ${esc(r.steps[i-1].t)}</p>`:'<p class="support">You haven’t finished a step yet. That’s fine.</p>'}
+  <p class="support">${d} of ${tot} items checked off · ${act.length?`${act.length} timer${act.length>1?'s':''} still running`:'no timers running'}</p>
+  <button class="btn btn-primary btn-block" data-act="closeDlg">Back to step ${i+1}</button></div>`;
+}
+function reviewHTML(r){
+  const ses=S.session,i=ses.step;
+  return `<div class="dlg"><div class="dlg-head"><h2 class="h2">All steps</h2><button class="btn btn-quiet btn-icon" data-act="closeDlg" aria-label="Close">${ic('close')}</button></div>
+  <p class="support">Your place is kept. Pick a step to jump, or close to stay where you are.</p>
+  <ol>${r.steps.map((s,k)=>{const st=k===i?'You are here':ses.done.includes(k)||k<i?'Done':'Up next';return `<li><button data-act="goto" data-step="${k}" ${k===i?'aria-current="step"':''}><span class="n">${k+1}</span><span><span class="st">${st}</span>${esc(s.t)}</span></button></li>`}).join('')}</ol>
+  <button class="btn btn-secondary btn-block" data-act="closeDlg">Close</button></div>`;
+}
+
+/* ================= events ================= */
+function setStep(r,k){const ses=S.session;ses.step=Math.max(0,Math.min(r.steps.length-1,k));ses.showResume=false;save();render({keepScroll:true});window.scrollTo(0,0);const h=$('#stepH');if(h)h.focus({preventScroll:true});announce(`Step ${ses.step+1} of ${r.steps.length}`)}
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;
+  const act=el.dataset.act,{page,id}=parse(),r=id?R(id):null;
+  if(el.matches('input'))return;
+  switch(act){
+    case 'menu':menuOpen=!menuOpen;render({keepScroll:true});break;
+    case 'toggleSave':{const rid=el.dataset.id;const k=S.saved.indexOf(rid);if(k>=0)S.saved.splice(k,1);else S.saved.push(rid);save();announce(k>=0?'Removed from saved':'Saved');focusFallback='save:'+rid;render({keepScroll:true});break}
+    case 'filter':{const f=el.dataset.f;homeF.has(f)?homeF.delete(f):homeF.add(f);$$('[data-act=filter]').forEach(b=>b.setAttribute('aria-pressed',homeF.has(b.dataset.f)));updateResults();break}
+    case 'clearFilters':homeQ='';homeF.clear();render({keepScroll:true});break;
+    case 'voice':voice();break;
+    case 'scale':S.scale[id]=parseFloat(el.dataset.v);save();focusFallback='scale:'+el.dataset.v;render({keepScroll:true});break;
+    case 'units':S.prefs.units=el.dataset.v;save();render({keepScroll:true});break;
+    case 'startCook':{const rid=el.dataset.id;if(!(el.dataset.keep&&hasSession(rid)))startSession(rid);location.hash='#/cook/'+rid;break}
+    case 'startOver':startSession(el.dataset.id);location.hash='#/cook/'+el.dataset.id;break;
+    case 'resume':if(S.session){S.session.showResume=true;save()}break;
+    case 'prev':setStep(r,S.session.step-1);break;
+    case 'next':{const ses=S.session;if(!ses.done.includes(ses.step))ses.done.push(ses.step);
+      if(ses.step>=r.steps.length-1){lastSummary={id:r.id};S.completed[r.id]=Date.now();S.session=null;save();location.hash='#/done/'+r.id}
+      else setStep(r,ses.step+1);break}
+    case 'goto':dlg().close();setStep(r,parseInt(el.dataset.step));break;
+    case 'review':openDlg(reviewHTML(r));break;
+    case 'whereAmI':openDlg(whereHTML(r));break;
+    case 'closeDlg':dlg().close();break;
+    case 'dismissResume':S.session.showResume=false;save();focusFallback='next';render({keepScroll:true});break;
+    case 'tStart':tStart(el.dataset.rid,el.dataset.step,el.dataset.label,parseInt(el.dataset.secs));announce(`${el.dataset.label} timer started`);renderDock();render({keepScroll:true});break;
+    case 'tPause':case 'tResume':case 'tReset':case 'tDismiss':tAct(act,el.dataset.tid);if(act==='tDismiss'){$('#dock').classList.remove('pulse');announce('Timer dismissed')}break;
+    case 'demoShort':tStart('demo','10s','10 second test',10);renderDock();render({keepScroll:true});break;
+    case 'cookAgain':{const rid=el.dataset.id;S.checked[rid]={};Object.keys(S.timers).forEach(k=>{if(S.timers[k].rid===rid)delete S.timers[k]});startSession(rid);renderDock();location.hash='#/prep/'+rid;break}
+    case 'feedback':S.feedback[id]=el.dataset.v;save();focusFallback='feedback:'+el.dataset.v;render({keepScroll:true});break;
+    case 'pref':{const k=el.dataset.pref;S.prefs[k]=!S.prefs[k];save();applyPrefs();announce(`${k} ${S.prefs[k]?'on':'off'}`);render({keepScroll:true});break}
+    case 'textSize':case 'font':case 'contrast':S.prefs[act]=el.dataset.v;save();applyPrefs();render({keepScroll:true});break;
+    case 'testAlert':fireAlert({rid:'demo',label:'Test alert',step:0});break;
+  }
+});
+document.addEventListener('change',e=>{
+  const el=e.target;if(el.dataset.act!=='check')return;
+  const {id,k}=el.dataset;chk(id)[k]=el.checked;save();
+  const r=R(id),{d,n}=pctReady(r);
+  announce(`${el.checked?'Marked ready':'Moved back'}. ${d} of ${n} ready.`);
+  if(parse().page==='prep'&&el.checked)focusFallback='ready:'+k[0];
+  render({keepScroll:true});
+});
+document.addEventListener('toggle',e=>{const el=e.target;if(el.matches&&el.matches('details.ready')){prepOpen[el.dataset.ready]=el.open}},true);
+document.addEventListener('input',e=>{if(e.target.id==='q'){homeQ=e.target.value;updateResults()}});
+document.addEventListener('submit',e=>{if(e.target.dataset.form==='search'){e.preventDefault();updateResults()}});
+function updateResults(){const rs=$('#results');if(!rs)return;rs.innerHTML=resultsHTML();const n=RECIPES.filter(matches).length;announce(`${n} ${n===1?'recipe':'recipes'} found`)}
+function voice(){
+  const st=$('#voice-status'),SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){st.textContent='Voice search isn’t available in this browser. You can type your search instead.';return}
+  try{const rec=new SR();rec.lang='en-US';rec.interimResults=false;st.textContent='Listening…';
+    rec.onresult=ev=>{homeQ=ev.results[0][0].transcript;$('#q').value=homeQ;st.textContent=`Heard: “${homeQ}”`;updateResults()};
+    rec.onerror=()=>{st.textContent='Couldn’t hear that. Try again or type your search.'};rec.onend=()=>{if(st.textContent==='Listening…')st.textContent=''};rec.start()
+  }catch(err){st.textContent='Voice search couldn’t start. You can type instead.'}
+}
+
+/* ================= boot ================= */
+applyPrefs();
+if(!location.hash)location.hash='#/';
+render();renderDock();
+</script>
+</body>
+</html>

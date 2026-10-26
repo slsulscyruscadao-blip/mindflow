@@ -1,0 +1,382 @@
+<!doctype html><html lang="en" data-contrast="standard" data-font="inter" data-size="standard"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system · MindFlow</title>
+<meta name="description" content="MindFlow: calm, one-step-at-a-time recipes for ADHD and executive function.">
+
+
+
+<style>
+:root{--color-background-primary:#F8F7F2;--color-background-secondary:#EEF1E8;--color-background-inverse:#293329;--color-surface-default:#FFFFFF;--color-surface-subtle:#E7EBDD;--color-surface-selected:#E4EADB;--color-surface-completed:#EEF1E8;--color-surface-disabled:#E7EBDD;--color-brand-primary:#506447;--color-brand-primaryHover:#3E5036;--color-brand-primaryPressed:#2F3E2A;--color-brand-accent:#65785B;--color-brand-secondary:#C8D2BC;--color-brand-onPrimary:#FFFFFF;--color-text-primary:#293329;--color-text-secondary:#4F594D;--color-text-muted:#626B60;--color-text-disabled:#767D72;--color-text-onInverse:#F8F7F2;--color-text-link:#2C5F6B;--color-border-default:#D9DED2;--color-border-strong:#8A9484;--color-border-selected:#506447;--color-feedback-success:#426B4A;--color-feedback-successSurface:#DCEADD;--color-feedback-warning:#98652E;--color-feedback-warningSurface:#F8E9D2;--color-feedback-error:#A3443D;--color-feedback-errorSurface:#F5DEDB;--color-feedback-info:#426B78;--color-feedback-infoSurface:#DCE9ED;--color-feedback-warningText:#6F4519;--color-focus-ring:#355D43;--color-focus-halo:#FFFFFF;--color-state-hover:#EEF1E8;--color-state-pressed:#E4EADB;--color-state-disabled:#E7EBDD;--color-state-selected:#E4EADB;--color-state-completed:#EEF1E8;--color-timer-running:#2C5F6B;--color-timer-runningSurface:#D8EAEE;--color-timer-paused:#4F594D;--color-timer-pausedSurface:#E7EBDD;--color-timer-expired:#98652E;--color-timer-expiredSurface:#F8E9D2;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;--space-20:80px;--radius-none:0px;--radius-small:8px;--radius-medium:12px;--radius-large:20px;--radius-pill:999px;--shadow-none:none;--shadow-low:0 1px 2px rgba(41,51,41,0.06), 0 1px 1px rgba(41,51,41,0.04);--shadow-medium:0 4px 12px rgba(41,51,41,0.08), 0 1px 3px rgba(41,51,41,0.06);--shadow-high:0 12px 32px rgba(41,51,41,0.14), 0 2px 6px rgba(41,51,41,0.08);--shadow-dock:0 -4px 20px rgba(41,51,41,0.10)}
+html[data-contrast=high]{--color-background-primary:#FFFFFF;--color-background-secondary:#F2F2F2;--color-surface-default:#FFFFFF;--color-surface-subtle:#EDEDED;--color-brand-primary:#1F3A1A;--color-brand-primaryHover:#142610;--color-text-primary:#000000;--color-text-secondary:#1A1A1A;--color-text-muted:#333333;--color-border-default:#4A4A4A;--color-focus-ring:#0B3D91;--color-timer-running:#0B3D5C;--color-timer-expired:#6B3F00;--color-border-strong:#4A4A4A}
+:root{
+  --bg:var(--color-background-primary);--bg2:var(--color-background-secondary);
+  --surface:var(--color-surface-default);--subtle:var(--color-surface-subtle);
+  --brand:var(--color-brand-primary);--brand-h:var(--color-brand-primaryHover);--brand-p:var(--color-brand-primaryPressed);
+  --on-brand:var(--color-brand-onPrimary);--brand2:var(--color-brand-secondary);
+  --text:var(--color-text-primary);--text2:var(--color-text-secondary);--muted:var(--color-text-muted);--dis:var(--color-text-disabled);
+  --border:var(--color-border-default);--border-s:var(--color-border-strong);
+  --focus:var(--color-focus-ring);
+  --hover:var(--color-state-hover);--press:var(--color-state-pressed);--sel:var(--color-state-selected);--done:var(--color-state-completed);
+  --font-inter:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-acc:'Atkinson Hyperlegible',Inter,system-ui,sans-serif;
+  --gutter:16px;--bar-h:0px;--dock-bottom:16px;
+  --r-s:var(--radius-small);--r-m:var(--radius-medium);--r-l:var(--radius-large);
+}
+@media (min-width:600px){:root{--gutter:24px}}
+@media (min-width:1025px){:root{--gutter:32px}}
+*{box-sizing:border-box}
+html{font-size:100%;-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+html[data-size=large]{font-size:112.5%}
+html[data-size=xl]{font-size:125%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-inter);font-size:1rem;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+html[data-font=atkinson] body{font-family:var(--font-acc)}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+a{color:var(--color-text-link)}
+img,svg{max-width:100%}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-100px;background:var(--surface);padding:12px 16px;border-radius:var(--r-s);z-index:100;border:2px solid var(--brand)}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff}
+[tabindex="-1"]:focus{outline:none;box-shadow:none}
+.ic{width:24px;height:24px;flex:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
+#app{flex:1;display:flex;flex-direction:column;min-width:0}
+main{flex:1;padding-bottom:calc(var(--bar-h) + 96px)}
+.display{font-size:clamp(2.5rem,5vw,3rem);line-height:1.15;font-weight:700;letter-spacing:-.02em}
+.h1{font-size:2rem;line-height:1.25;font-weight:600}
+.h2{font-size:1.5rem;line-height:1.3;font-weight:600}
+.h3{font-size:1.25rem;line-height:1.4;font-weight:600}
+.lead{font-size:1.125rem;color:var(--text2);max-width:65ch}
+.support{font-size:.875rem;font-weight:500;color:var(--text2)}
+.label{font-size:.8125rem;font-weight:500;letter-spacing:.01em;color:var(--text2)}
+.eyebrow{font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text2)}
+.stack>*+*{margin-top:var(--space-4)}
+.stack-lg>*+*{margin-top:var(--space-8)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;min-width:48px;padding:0 24px;border-radius:var(--r-m);border:2px solid transparent;font-size:1.0625rem;font-weight:600;cursor:pointer;text-decoration:none;line-height:1.2;text-align:center;transition:background-color .12s,border-color .12s}
+.btn-primary{background:var(--brand);color:var(--on-brand)}
+.btn-primary:hover,.btn-primary.is-hover{background:var(--brand-h)}
+.btn-primary:active,.btn-primary.is-pressed{background:var(--brand-p)}
+.btn-secondary{background:var(--surface);color:var(--brand);border-color:var(--brand)}
+.btn-secondary:hover,.btn-secondary.is-hover{background:var(--hover)}
+.btn-secondary:active,.btn-secondary.is-pressed{background:var(--press)}
+.btn-quiet{background:transparent;color:var(--text);padding:0 16px;min-height:48px}
+.btn-quiet:hover{background:var(--hover)}
+.btn-icon{padding:0;width:48px;height:48px;min-height:48px}
+.btn:disabled,.btn[aria-disabled=true]{background:var(--color-surface-disabled);color:var(--dis);border-color:transparent;cursor:not-allowed}
+.btn.is-focus{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff}
+.btn.is-loading{position:relative}
+.dots{display:inline-flex;gap:4px}.dots i{width:8px;height:8px;border-radius:50%;background:currentColor;animation:blink 1s infinite}.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.btn-block{width:100%}
+
+/* ---------- header ---------- */
+.site-header{background:var(--bg);border-bottom:1px solid var(--border)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;font-size:1.25rem;min-height:48px}
+.logo svg{width:32px;height:32px}
+.nav-desktop{display:none;gap:8px;align-items:center}
+.navlink{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border-radius:var(--r-m);text-decoration:none;color:var(--text);font-weight:500}
+.navlink:hover{background:var(--hover)}
+.navlink[aria-current=page]{background:var(--sel);font-weight:600;box-shadow:inset 0 -3px 0 var(--brand)}
+.menu-btn{display:inline-flex}
+.mobile-menu{border-top:1px solid var(--border);background:var(--surface)}
+.mobile-menu .wrap{display:grid;gap:4px;padding-top:8px;padding-bottom:12px;min-height:0}
+.mobile-menu .navlink{min-height:56px;font-size:1.0625rem}
+@media (min-width:600px){.nav-desktop{display:flex}.menu-btn,.mobile-menu{display:none!important}}
+
+/* ---------- search & chips ---------- */
+.hero{padding:40px 0 24px}
+.hero .lead{margin-top:12px}
+.search{display:flex;gap:8px;margin-top:24px;max-width:720px}
+.search .field{position:relative;flex:1}
+.search .field .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text2);pointer-events:none}
+.search input{width:100%;height:56px;padding:0 16px 0 52px;border-radius:var(--r-m);border:2px solid var(--border-s);background:var(--surface);font-size:1.125rem}
+.search input::placeholder{color:var(--muted);opacity:1}
+.search .btn-icon{width:56px;height:56px;border:2px solid var(--border-s);background:var(--surface);color:var(--text)}
+.search .btn-icon:hover{background:var(--hover)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 16px;border-radius:999px;border:2px solid var(--border-s);background:var(--surface);cursor:pointer;font-weight:500}
+.chip .ic{width:18px;height:18px;display:none}
+.chip:hover{background:var(--hover)}
+.chip[aria-pressed=true]{background:var(--sel);border-color:var(--brand);font-weight:600}
+.chip[aria-pressed=true] .ic{display:block}
+.voice-status{min-height:24px;margin-top:8px}
+
+/* ---------- cards ---------- */
+.continue{display:flex;flex-direction:column;gap:16px;background:var(--surface);border:2px solid var(--brand);border-radius:var(--r-m);padding:16px;margin-top:24px}
+.continue .meta{display:grid;gap:8px;flex:1}
+@media (min-width:600px){.continue{flex-direction:row;align-items:center}}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.rcard{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-low);transition:box-shadow .2s}
+.rcard:hover,.rcard.is-hover{box-shadow:var(--shadow-medium)}
+.rcard:has(a:focus-visible),.rcard.is-focus{outline:3px solid var(--focus);outline-offset:2px}
+.rcard a:focus-visible{outline:none;box-shadow:none}
+.rcard .thumb svg{display:block;width:100%;height:auto}
+.rcard .body{padding:16px;display:grid;gap:8px;flex:1}
+.rcard h3 a{color:var(--text);text-decoration:none}
+.rcard h3 a::after{content:'';position:absolute;inset:0}
+.rcard .save{position:absolute;top:8px;right:8px;z-index:2;display:inline-flex;align-items:center;gap:6px;min-height:48px;min-width:48px;padding:0 12px;border-radius:var(--r-m);border:2px solid var(--border-s);background:var(--surface);cursor:pointer;font-weight:600;font-size:.875rem;justify-content:center}
+.rcard .save:hover{background:var(--hover)}
+.rcard .save[aria-pressed=true]{border-color:var(--brand);background:var(--sel)}
+.rcard .save .ic{width:20px;height:20px}
+.rcard.is-continue{border:2px solid var(--brand)}
+.facts-row{display:flex;flex-wrap:wrap;gap:4px 16px;color:var(--text2);font-size:.875rem;font-weight:500}
+.facts-row span{display:inline-flex;align-items:center;gap:6px}
+.facts-row .ic{width:18px;height:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 12px;border-radius:999px;background:var(--bg2);border:1px solid var(--border-s);font-size:.8125rem;font-weight:600;color:var(--text)}
+.pill .ic{width:16px;height:16px}
+.featured{display:grid;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;position:relative;margin-top:40px}
+.featured .thumb svg{display:block;width:100%;height:100%;object-fit:cover}
+.featured .body{padding:24px;display:grid;gap:12px;align-content:center}
+.featured h2 a{color:var(--text);text-decoration:none}
+.featured h2 a::after{content:'';position:absolute;inset:0}
+.featured:has(a:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
+.featured a:focus-visible{outline:none;box-shadow:none}
+@media (min-width:600px){.featured{grid-template-columns:1fr 1fr}.featured .body{padding:32px}}
+.section{margin-top:48px}
+.section>.h2{margin-bottom:16px}
+.empty{background:var(--surface);border:2px dashed var(--border-s);border-radius:var(--r-m);padding:32px 24px;text-align:center;display:grid;gap:12px;justify-items:center}
+
+/* ---------- recipe overview ---------- */
+.crumb{padding:16px 0 0}
+.split{display:grid;gap:32px;padding-top:16px}
+@media (min-width:1025px){.split{grid-template-columns:5fr 6fr;gap:48px;align-items:start}.split .summary{position:sticky;top:16px}}
+@media (min-width:600px) and (max-width:1024px){.split .summary .hero-img{max-width:640px}}
+.hero-img{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--border)}
+.hero-img svg{display:block;width:100%;height:auto}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m)}
+@media (min-width:600px){.facts{grid-template-columns:repeat(4,1fr)}}
+.facts dt{font-size:.8125rem;font-weight:500;color:var(--text2)}
+.facts dd{margin:0;font-size:1.25rem;font-weight:600}
+.ctas{display:grid;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end}
+.controls .grp{display:grid;gap:6px}
+.seg{display:inline-flex;border:2px solid var(--border-s);border-radius:var(--r-m);overflow:hidden;background:var(--surface)}
+.seg button{min-height:48px;min-width:56px;padding:0 16px;border:0;background:transparent;cursor:pointer;font-weight:500;border-right:2px solid var(--border-s)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--hover)}
+.seg button[aria-pressed=true]{background:var(--brand);color:var(--on-brand);font-weight:600}
+.seg button:focus-visible{outline-offset:-3px}
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);cursor:pointer;position:relative}
+.row input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.row .box{width:28px;height:28px;border:2px solid var(--border-s);border-radius:var(--r-s);display:grid;place-items:center;flex:none;background:var(--surface)}
+.row .box .ic{width:20px;height:20px;color:var(--on-brand);opacity:0}
+.row:hover,.row.is-hover{background:var(--hover)}
+.row:has(input:focus-visible),.row.is-focus{outline:3px solid var(--focus);outline-offset:2px}
+.row input:focus-visible{outline:none}
+.row:has(input:checked) .box,.row.is-checked .box{background:var(--brand);border-color:var(--brand)}
+.row:has(input:checked) .box .ic,.row.is-checked .box .ic{opacity:1}
+.row:has(input:checked),.row.is-checked{background:var(--done)}
+.row:has(input:checked) .name,.row.is-checked .name{text-decoration:line-through;color:var(--text2)}
+.row .qty{font-weight:600;min-width:5.5ch;font-variant-numeric:tabular-nums}
+.row .eq{color:var(--text2)}
+.row .eq .ic{width:24px;height:24px}
+.row .state{margin-left:auto;font-size:.8125rem;font-weight:600;color:var(--text2);display:none;align-items:center;gap:4px}
+.row:has(input:checked) .state,.row.is-checked .state{display:inline-flex}
+.row .state .ic{width:16px;height:16px}
+details.ready{margin-top:12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-m)}
+details.ready>summary{min-height:56px;display:flex;align-items:center;gap:8px;padding:0 16px;cursor:pointer;font-weight:600;list-style:none}
+details.ready>summary::-webkit-details-marker{display:none}
+details.ready>summary::after{content:'+';margin-left:auto;font-size:1.5rem;font-weight:500}
+details.ready[open]>summary::after{content:'\2212'}
+details.ready .checklist{padding:0 12px 12px}
+details.disclose{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m)}
+details.disclose>summary{min-height:56px;display:flex;align-items:center;padding:0 16px;cursor:pointer;font-weight:600;list-style:none;gap:8px}
+details.disclose>summary::-webkit-details-marker{display:none}
+details.disclose>summary::after{content:'+';margin-left:auto;font-size:1.5rem;font-weight:500}
+details.disclose[open]>summary::after{content:'\2212'}
+details.disclose>.in{padding:0 16px 16px}
+details.disclose ol{margin:0;padding-left:24px;display:grid;gap:12px;max-width:65ch}
+
+/* ---------- switch ---------- */
+.switch{display:inline-flex;align-items:center;gap:12px;min-height:48px;background:none;border:0;padding:0;cursor:pointer;font-weight:600}
+.switch .track{width:56px;height:32px;border-radius:999px;background:var(--border-s);position:relative;flex:none;transition:background-color .12s;border:2px solid var(--border-s)}
+.switch .track::after{content:'';position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .12s;box-shadow:var(--shadow-low)}
+.switch[aria-checked=true] .track{background:var(--brand);border-color:var(--brand)}
+.switch[aria-checked=true] .track::after{transform:translateX(24px)}
+.switch .txt{min-width:2.5ch}
+.switch:disabled{cursor:not-allowed;color:var(--dis)}
+.switch:disabled .track{background:var(--color-surface-disabled);border-color:var(--border)}
+.switch.is-focus{outline:3px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 5px #fff;border-radius:var(--r-s)}
+.switch-row{display:flex;gap:16px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:12px 16px}
+
+/* ---------- progress ---------- */
+.progress{display:grid;gap:8px}
+.progress .bar{height:12px;background:var(--subtle);border-radius:999px;overflow:hidden;border:1px solid var(--border-s)}
+.progress .bar>i{display:block;height:100%;background:var(--brand);border-radius:999px;transition:width .2s}
+.progress.is-complete .bar>i{background:var(--color-feedback-success)}
+.progress .cap{display:flex;justify-content:space-between;font-weight:600;font-size:.9375rem;align-items:center;gap:8px}
+.progress .cap .ic{width:18px;height:18px}
+.segs{display:flex;gap:6px}
+.segs i{flex:1;height:12px;border-radius:999px;background:var(--subtle);border:1px solid var(--border-s)}
+.segs i.d{background:var(--brand);border-color:var(--brand)}
+.segs i.c{background:var(--surface);border:3px solid var(--brand)}
+
+/* ---------- prep ---------- */
+.narrow{max-width:720px;margin:0 auto}
+.prep-head{padding:32px 0 16px}
+.cols{display:grid;gap:32px}
+@media (min-width:1025px){.cols.two{grid-template-columns:1fr 1fr}}
+.sticky-cta{position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 75%,transparent);padding:16px 0 calc(16px + env(safe-area-inset-bottom));margin-top:32px;display:grid;gap:12px;z-index:5}
+
+/* ---------- cook ---------- */
+body.cooking{--bar-h:81px}
+.focus-head{background:var(--bg);border-bottom:1px solid var(--border)}
+.focus-head .wrap{display:flex;align-items:center;gap:8px;min-height:64px}
+.focus-head .t{flex:1;font-weight:600;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cook-layout{display:grid;gap:24px;padding-top:24px}
+@media (min-width:600px){.cook-layout{grid-template-columns:minmax(0,1fr) 300px;align-items:start}}
+@media (min-width:1025px){.cook-layout{grid-template-columns:minmax(0,1fr) 340px;gap:32px}}
+.stepcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r-m);padding:24px;display:grid;gap:20px;box-shadow:var(--shadow-medium)}
+@media (min-width:600px){.stepcard{padding:40px}}
+.stepcard.is-done{background:var(--done)}
+.stepcard .step-title{font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:.04em;text-transform:uppercase;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.instruction{font-size:clamp(1.25rem,2.2vw,1.625rem);line-height:1.6;font-weight:500;max-width:65ch}
+.badge{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 12px;border-radius:999px;font-size:.8125rem;font-weight:700;letter-spacing:.02em;text-transform:none;background:var(--color-feedback-successSurface);color:var(--color-feedback-success);border:1px solid var(--color-feedback-success)}
+.badge .ic{width:16px;height:16px}
+.note{display:flex;gap:12px;padding:16px;border-radius:var(--r-m);border:2px solid}
+.note.warn{background:var(--color-feedback-warningSurface);border-color:var(--color-feedback-warning);color:var(--color-feedback-warningText)}
+.note.info{background:var(--color-feedback-infoSurface);border-color:var(--color-feedback-info);color:#25434d}
+.note .ic{margin-top:2px}
+.note strong{display:block}
+.side{display:grid;gap:16px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:16px;display:grid;gap:12px}
+.panel h2{font-size:1rem;font-weight:700;display:flex;gap:8px;align-items:center}
+.panel ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.panel li{display:flex;gap:10px;align-items:center}
+.panel li .q{font-weight:600;min-width:6ch;font-variant-numeric:tabular-nums}
+.panel li .ic{width:22px;height:22px;color:var(--text2)}
+.panel .none{color:var(--text2);font-size:.9375rem}
+.actionbar{position:sticky;bottom:0;z-index:30;background:var(--bg);border-top:1px solid var(--border);padding:12px 0 calc(12px + env(safe-area-inset-bottom))}
+.actionbar .wrap{display:flex;gap:12px}
+.actionbar .btn{flex:1}
+.actionbar .btn-primary{flex:2}
+.banner{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--color-feedback-infoSurface);border:2px solid var(--color-feedback-info);border-radius:var(--r-m);padding:12px 16px;color:#25434d}
+.banner p{flex:1;min-width:200px;font-weight:500}
+
+/* ---------- timers ---------- */
+.timer{--tc:var(--color-timer-running);--ts:var(--color-timer-runningSurface);border:2px solid var(--tc);background:var(--ts);border-radius:var(--r-m);padding:16px;display:grid;gap:12px;color:var(--text)}
+.timer[data-state=paused]{--tc:var(--color-timer-paused);--ts:var(--color-timer-pausedSurface)}
+.timer[data-state=done]{--tc:var(--color-timer-expired);--ts:var(--color-timer-expiredSurface);color:var(--color-feedback-warningText)}
+.timer[data-state=dismissed]{--tc:var(--border-s);--ts:var(--surface)}
+.timer .status{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--tc);font-size:.9375rem}
+.timer[data-state=done] .status{color:var(--color-feedback-warningText)}
+.timer .digits{font-size:2.5rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.timer[data-state=done] .digits{color:var(--color-feedback-warningText)}
+.timer .tlabel{font-weight:500;color:var(--text2)}
+.timer[data-state=done] .tlabel{color:var(--color-feedback-warningText)}
+.timer .tctl{display:flex;gap:8px;flex-wrap:wrap}
+.timer .tctl .btn{flex:1;min-width:120px}
+.timer[data-state=done]{animation:soft 1.6s ease-in-out 3}
+@keyframes soft{50%{box-shadow:0 0 0 6px rgba(152,101,46,.28)}}
+.timer-idle{width:100%}
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--dock-bottom) + env(safe-area-inset-bottom));width:min(560px,calc(100% - 24px));z-index:40;display:grid;gap:8px;max-height:45vh;overflow:auto}
+@media (min-width:1025px){.dock{left:auto;right:24px;transform:none;width:380px}}
+.dock[hidden]{display:none}
+.dock .dockitem{display:flex;align-items:center;gap:8px;background:var(--ts);border:2px solid var(--tc);border-radius:var(--r-m);padding:8px 8px 8px 16px;box-shadow:var(--shadow-high);--tc:var(--color-timer-running);--ts:var(--surface);color:var(--text)}
+.dock .dockitem[data-state=paused]{--tc:var(--color-timer-paused)}
+.dock .dockitem[data-state=done]{--tc:var(--color-timer-expired);--ts:var(--color-timer-expiredSurface);color:var(--color-feedback-warningText)}
+.dock .dockitem .info{flex:1;min-width:0;display:grid}
+.dock .dockitem .where{font-size:.8125rem;font-weight:600;display:flex;gap:6px;align-items:center;color:var(--tc)}
+.dock .dockitem[data-state=done] .where{color:var(--color-feedback-warningText)}
+.dock .dockitem .where .ic{width:16px;height:16px}
+.dock .dockitem .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:inherit;text-decoration:none}
+.dock .dockitem .nm:hover{text-decoration:underline}
+.dock .dockitem .d{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.dock .dockitem .btn{min-height:48px;padding:0 14px;font-size:.9375rem}
+.dock.pulse .dockitem[data-state=done]{animation:soft 1.6s ease-in-out 3}
+.demo-row{display:grid;gap:16px}
+@media (min-width:600px){.demo-row{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1025px){.demo-row{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- complete ---------- */
+.done-wrap{text-align:center;display:grid;gap:24px;justify-items:center;padding:40px 0}
+.done-wrap .art{width:min(320px,80%)}
+.done-wrap .art svg{width:100%;height:auto}
+.summary-list{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:center;color:var(--text2);font-weight:500}
+.summary-list span{display:inline-flex;gap:8px;align-items:center}
+.done-actions{display:grid;gap:12px;width:100%;max-width:420px}
+.fb{display:grid;gap:8px;justify-items:center}
+
+/* ---------- settings ---------- */
+.set-group{display:grid;gap:12px}
+.setting{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-m);padding:16px;display:grid;gap:12px}
+.setting .head{display:flex;gap:12px;align-items:flex-start}
+.setting .head .ic{color:var(--text2);margin-top:2px}
+.setting .head p{color:var(--text2);font-size:.9375rem}
+.setting .head strong{display:block;font-size:1.0625rem}
+
+/* ---------- dialog ---------- */
+dialog{border:0;border-radius:var(--r-m);padding:0;width:min(560px,calc(100% - 24px));max-height:calc(100vh - 48px);background:var(--surface);color:var(--text);box-shadow:var(--shadow-high)}
+dialog::backdrop{background:rgba(41,51,41,.55)}
+dialog .dlg{padding:24px;display:grid;gap:16px}
+dialog .dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+dialog ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+dialog ol button{width:100%;text-align:left;display:flex;gap:12px;align-items:flex-start;min-height:56px;padding:12px 16px;border-radius:var(--r-m);border:2px solid var(--border);background:var(--surface);cursor:pointer}
+dialog ol button:hover{background:var(--hover)}
+dialog ol button[aria-current=step]{border-color:var(--brand);background:var(--sel)}
+dialog ol .n{font-weight:700;min-width:2ch}
+dialog ol .st{display:block;font-size:.8125rem;font-weight:700;color:var(--text2)}
+.quote{background:var(--bg2);border-radius:var(--r-m);padding:16px;font-size:1.125rem;font-weight:500}
+
+/* ---------- system ---------- */
+.sw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.sw{border:1px solid var(--border);border-radius:var(--r-m);overflow:hidden;background:var(--surface)}
+.sw i{display:block;height:56px;border-bottom:1px solid var(--border)}
+.sw div{padding:8px 12px;font-size:.8125rem;word-break:break-word}
+.sw b{display:block;font-size:.8125rem}
+.spec{display:grid;gap:12px;align-items:start}
+.spec-row{display:grid;gap:12px}
+@media (min-width:600px){.spec-row.c2{grid-template-columns:repeat(2,1fr)}.spec-row.c3{grid-template-columns:repeat(3,1fr)}}
+.sbar{display:flex;align-items:center;gap:12px;font-size:.875rem}
+.sbar i{display:block;height:16px;background:var(--brand2);border-radius:2px}
+footer.site-footer{border-top:1px solid var(--border);padding:24px 0 calc(var(--bar-h) + 24px);color:var(--text2);font-size:.875rem;margin-top:48px}
+footer.site-footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+
+/* ---------- Clean View & motion ---------- */
+body.clean .decor{display:none!important}
+body.clean .rcard .body{padding-top:64px}
+body.clean .rcard .save{top:8px}
+.rm *,.rm *::before,.rm *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+html[data-contrast=high] .rcard,html[data-contrast=high] .row,html[data-contrast=high] .panel,html[data-contrast=high] .setting{border-width:2px}
+</style>
+</head>
+<body style="--dock-bottom: 16px;" class="">
+<a class="skip" href="#main">Skip to main content</a>
+<div id="app"><header class="site-header"><div class="wrap"><a class="logo" href="#/" aria-label="MindFlow home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" fill="#506447"></circle><path d="M9 21c0-7 4-11 13-11 0 8-4 12-11 12" stroke="#F8F7F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 22c2.5-4 5-6.5 8-8" stroke="#F8F7F2" stroke-width="2" stroke-linecap="round"></path></svg><span>MindFlow</span></a>
+  <nav class="nav-desktop" aria-label="Main"><a class="navlink" href="#/"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"></path><path d="M10 20v-6h4v6"></path></svg>Discover</a><a class="navlink" href="#/saved"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z"></path></svg>Saved</a><a class="navlink" href="#/settings"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Settings</a></nav>
+  <button class="btn btn-quiet btn-icon menu-btn" data-act="menu" aria-expanded="false" aria-controls="mmenu" aria-label="Open menu"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>
+  <div class="mobile-menu" id="mmenu" hidden=""><nav class="wrap" aria-label="Mobile"><a class="navlink" href="#/"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11l8-7 8 7v9H4z"></path><path d="M10 20v-6h4v6"></path></svg>Discover</a><a class="navlink" href="#/saved"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z"></path></svg>Saved</a><a class="navlink" href="#/settings"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Settings</a></nav></div></header><main id="main" tabindex="-1"><div class="wrap"><section class="hero"><h1 class="display" id="sys-h" tabindex="-1">Design system</h1><p class="lead">Foundations and components, generated from <code>tokens.json</code>.</p></section>
+  <div class="stack-lg"><section><h2 class="h1">Foundations</h2><h3 class="h3" style="margin-top:16px">Color</h3><h3 class="h3" style="margin:24px 0 12px">background</h3><div class="sw-grid"><div class="sw"><i style="background:#F8F7F2"></i><div><b>color.background.primary</b>#F8F7F2</div></div><div class="sw"><i style="background:#EEF1E8"></i><div><b>color.background.secondary</b>#EEF1E8</div></div><div class="sw"><i style="background:#293329"></i><div><b>color.background.inverse</b>#293329</div></div></div><h3 class="h3" style="margin:24px 0 12px">surface</h3><div class="sw-grid"><div class="sw"><i style="background:#FFFFFF"></i><div><b>color.surface.default</b>#FFFFFF</div></div><div class="sw"><i style="background:#E7EBDD"></i><div><b>color.surface.subtle</b>#E7EBDD</div></div><div class="sw"><i style="background:#E4EADB"></i><div><b>color.surface.selected</b>#E4EADB</div></div><div class="sw"><i style="background:#EEF1E8"></i><div><b>color.surface.completed</b>#EEF1E8</div></div><div class="sw"><i style="background:#E7EBDD"></i><div><b>color.surface.disabled</b>#E7EBDD</div></div></div><h3 class="h3" style="margin:24px 0 12px">brand</h3><div class="sw-grid"><div class="sw"><i style="background:#506447"></i><div><b>color.brand.primary</b>#506447</div></div><div class="sw"><i style="background:#3E5036"></i><div><b>color.brand.primaryHover</b>#3E5036</div></div><div class="sw"><i style="background:#2F3E2A"></i><div><b>color.brand.primaryPressed</b>#2F3E2A</div></div><div class="sw"><i style="background:#65785B"></i><div><b>color.brand.accent</b>#65785B</div></div><div class="sw"><i style="background:#C8D2BC"></i><div><b>color.brand.secondary</b>#C8D2BC</div></div><div class="sw"><i style="background:#FFFFFF"></i><div><b>color.brand.onPrimary</b>#FFFFFF</div></div></div><h3 class="h3" style="margin:24px 0 12px">text</h3><div class="sw-grid"><div class="sw"><i style="background:#293329"></i><div><b>color.text.primary</b>#293329</div></div><div class="sw"><i style="background:#4F594D"></i><div><b>color.text.secondary</b>#4F594D</div></div><div class="sw"><i style="background:#626B60"></i><div><b>color.text.muted</b>#626B60</div></div><div class="sw"><i style="background:#767D72"></i><div><b>color.text.disabled</b>#767D72</div></div><div class="sw"><i style="background:#F8F7F2"></i><div><b>color.text.onInverse</b>#F8F7F2</div></div><div class="sw"><i style="background:#2C5F6B"></i><div><b>color.text.link</b>#2C5F6B</div></div></div><h3 class="h3" style="margin:24px 0 12px">border</h3><div class="sw-grid"><div class="sw"><i style="background:#D9DED2"></i><div><b>color.border.default</b>#D9DED2</div></div><div class="sw"><i style="background:#8A9484"></i><div><b>color.border.strong</b>#8A9484</div></div><div class="sw"><i style="background:#506447"></i><div><b>color.border.selected</b>#506447</div></div></div><h3 class="h3" style="margin:24px 0 12px">feedback</h3><div class="sw-grid"><div class="sw"><i style="background:#426B4A"></i><div><b>color.feedback.success</b>#426B4A</div></div><div class="sw"><i style="background:#DCEADD"></i><div><b>color.feedback.successSurface</b>#DCEADD</div></div><div class="sw"><i style="background:#98652E"></i><div><b>color.feedback.warning</b>#98652E</div></div><div class="sw"><i style="background:#F8E9D2"></i><div><b>color.feedback.warningSurface</b>#F8E9D2</div></div><div class="sw"><i style="background:#A3443D"></i><div><b>color.feedback.error</b>#A3443D</div></div><div class="sw"><i style="background:#F5DEDB"></i><div><b>color.feedback.errorSurface</b>#F5DEDB</div></div><div class="sw"><i style="background:#426B78"></i><div><b>color.feedback.info</b>#426B78</div></div><div class="sw"><i style="background:#DCE9ED"></i><div><b>color.feedback.infoSurface</b>#DCE9ED</div></div><div class="sw"><i style="background:#6F4519"></i><div><b>color.feedback.warningText</b>#6F4519</div></div></div><h3 class="h3" style="margin:24px 0 12px">focus</h3><div class="sw-grid"><div class="sw"><i style="background:#355D43"></i><div><b>color.focus.ring</b>#355D43</div></div><div class="sw"><i style="background:#FFFFFF"></i><div><b>color.focus.halo</b>#FFFFFF</div></div></div><h3 class="h3" style="margin:24px 0 12px">state</h3><div class="sw-grid"><div class="sw"><i style="background:#EEF1E8"></i><div><b>color.state.hover</b>#EEF1E8</div></div><div class="sw"><i style="background:#E4EADB"></i><div><b>color.state.pressed</b>#E4EADB</div></div><div class="sw"><i style="background:#E7EBDD"></i><div><b>color.state.disabled</b>#E7EBDD</div></div><div class="sw"><i style="background:#E4EADB"></i><div><b>color.state.selected</b>#E4EADB</div></div><div class="sw"><i style="background:#EEF1E8"></i><div><b>color.state.completed</b>#EEF1E8</div></div></div><h3 class="h3" style="margin:24px 0 12px">timer</h3><div class="sw-grid"><div class="sw"><i style="background:#2C5F6B"></i><div><b>color.timer.running</b>#2C5F6B</div></div><div class="sw"><i style="background:#D8EAEE"></i><div><b>color.timer.runningSurface</b>#D8EAEE</div></div><div class="sw"><i style="background:#4F594D"></i><div><b>color.timer.paused</b>#4F594D</div></div><div class="sw"><i style="background:#E7EBDD"></i><div><b>color.timer.pausedSurface</b>#E7EBDD</div></div><div class="sw"><i style="background:#98652E"></i><div><b>color.timer.expired</b>#98652E</div></div><div class="sw"><i style="background:#F8E9D2"></i><div><b>color.timer.expiredSurface</b>#F8E9D2</div></div></div></section>
+  <section><h3 class="h2">Typography</h3><div class="spec" style="margin-top:12px"><div class="sw" style="padding:12px 16px"><span style="font-size:clamp(2.5rem, 5vw, 3rem);font-weight:700;line-height:1.15;display:block">Cook one step at a time</span><span class="label">typography.display · 40-48px · 700 · lh 1.15</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:2rem;font-weight:600;line-height:1.25;display:block">Cook one step at a time</span><span class="label">typography.heading1 · 32px · 600 · lh 1.25</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:1.5rem;font-weight:600;line-height:1.3;display:block">Cook one step at a time</span><span class="label">typography.heading2 · 24px · 600 · lh 1.3</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:1.25rem;font-weight:600;line-height:1.4;display:block">Cook one step at a time</span><span class="label">typography.heading3 · 20px · 600 · lh 1.4</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:1.125rem;font-weight:400;line-height:1.6;display:block">Cook one step at a time</span><span class="label">typography.bodyLarge · 18px · 400 · lh 1.6</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:1rem;font-weight:400;line-height:1.6;display:block">Cook one step at a time</span><span class="label">typography.body · 16px · 400 · lh 1.6</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:0.875rem;font-weight:500;line-height:1.5;display:block">Cook one step at a time</span><span class="label">typography.supporting · 14px · 500 · lh 1.5</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:0.8125rem;font-weight:500;line-height:1.4;display:block">Cook one step at a time</span><span class="label">typography.label · 13px · 500 · lh 1.4</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:clamp(1.25rem, 2.2vw, 1.625rem);font-weight:500;line-height:1.6;display:block">Cook one step at a time</span><span class="label">typography.cookingInstruction · 20-26 · 500 · lh 1.6</span></div><div class="sw" style="padding:12px 16px"><span style="font-size:2.5rem;font-weight:700;line-height:1;display:block">Cook one step at a time</span><span class="label">typography.timerDigits · 40px · 700 · lh 1</span></div></div></section>
+  <section><h3 class="h2">Spacing, radius, shadow</h3><div class="spec" style="margin:12px 0"><div class="sbar"><span style="width:90px">spacing.1</span><i style="width:4px"></i><span>4px</span></div><div class="sbar"><span style="width:90px">spacing.2</span><i style="width:8px"></i><span>8px</span></div><div class="sbar"><span style="width:90px">spacing.3</span><i style="width:12px"></i><span>12px</span></div><div class="sbar"><span style="width:90px">spacing.4</span><i style="width:16px"></i><span>16px</span></div><div class="sbar"><span style="width:90px">spacing.6</span><i style="width:24px"></i><span>24px</span></div><div class="sbar"><span style="width:90px">spacing.8</span><i style="width:32px"></i><span>32px</span></div><div class="sbar"><span style="width:90px">spacing.10</span><i style="width:40px"></i><span>40px</span></div><div class="sbar"><span style="width:90px">spacing.12</span><i style="width:48px"></i><span>48px</span></div><div class="sbar"><span style="width:90px">spacing.16</span><i style="width:64px"></i><span>64px</span></div><div class="sbar"><span style="width:90px">spacing.20</span><i style="width:80px"></i><span>80px</span></div></div><div style="display:flex;gap:24px;flex-wrap:wrap;margin:24px 0"><div style="text-align:center"><div style="width:72px;height:72px;border:2px solid var(--brand);background:var(--bg2);border-radius:8px"></div><span class="label">small<br>8px</span></div><div style="text-align:center"><div style="width:72px;height:72px;border:2px solid var(--brand);background:var(--bg2);border-radius:12px"></div><span class="label">medium<br>12px</span></div><div style="text-align:center"><div style="width:72px;height:72px;border:2px solid var(--brand);background:var(--bg2);border-radius:20px"></div><span class="label">large<br>20px</span></div><div style="text-align:center"><div style="width:72px;height:72px;border:2px solid var(--brand);background:var(--bg2);border-radius:999px"></div><span class="label">pill<br>999px</span></div></div><div style="display:flex;gap:24px;flex-wrap:wrap;padding:8px"><div style="text-align:center"><div style="width:96px;height:72px;background:var(--surface);border-radius:12px;box-shadow:0 1px 2px rgba(41,51,41,0.06), 0 1px 1px rgba(41,51,41,0.04)"></div><span class="label">low</span></div><div style="text-align:center"><div style="width:96px;height:72px;background:var(--surface);border-radius:12px;box-shadow:0 4px 12px rgba(41,51,41,0.08), 0 1px 3px rgba(41,51,41,0.06)"></div><span class="label">medium</span></div><div style="text-align:center"><div style="width:96px;height:72px;background:var(--surface);border-radius:12px;box-shadow:0 12px 32px rgba(41,51,41,0.14), 0 2px 6px rgba(41,51,41,0.08)"></div><span class="label">high</span></div></div></section>
+  <section><h3 class="h2">Breakpoints</h3><p class="lead">Mobile below 600px · Tablet 600–1024px · Desktop above 1024px. Gutters 16 / 24 / 32px. Columns 4 / 8 / 12.</p></section>
+  <section><h2 class="h1">Components</h2><h3 class="h3" style="margin:16px 0 12px">Buttons</h3><div class="spec-row c3"><button class="btn btn-primary">Default</button><button class="btn btn-primary is-hover">Hover</button><button class="btn btn-primary is-pressed">Pressed</button><button class="btn btn-primary is-focus">Focused</button><button class="btn btn-primary" disabled="">Disabled</button><button class="btn btn-primary is-loading" aria-label="Loading"><span class="dots"><i></i><i></i><i></i></span></button><button class="btn btn-secondary">Secondary</button><button class="btn btn-secondary is-hover">Secondary hover</button><button class="btn btn-quiet">Quiet</button></div><h3 class="h3" style="margin:32px 0 12px">Ingredient row</h3><ul class="checklist"><li><label class="row"><span class="box"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span class="qty">2 tbsp</span><span class="name">Default</span></label></li><li><label class="row is-hover"><span class="box"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span class="qty">2 tbsp</span><span class="name">Hover</span></label></li><li><label class="row is-focus"><span class="box"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span class="qty">2 tbsp</span><span class="name">Focus</span></label></li><li><label class="row is-checked"><span class="box"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span class="qty">2 tbsp</span><span class="name">Checked</span><span class="state"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Ready</span></label></li></ul><details class="ready" open=""><summary><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Ready (1) · completed and collapsed group</summary></details><h3 class="h3" style="margin:32px 0 12px">Toggle</h3><div class="spec-row c2"><div><button class="switch" role="switch" aria-checked="true" inert="" data-pref="x" data-key="pref:x"><span class="track"></span><span class="txt" aria-hidden="true">On</span></button></div><div><button class="switch" role="switch" aria-checked="false" inert="" data-pref="x" data-key="pref:x"><span class="track"></span><span class="txt" aria-hidden="true">Off</span></button></div><div><button class="switch is-focus" role="switch" aria-checked="true" inert=""><span class="track"></span><span class="txt">On · focused</span></button></div><div><button class="switch" role="switch" aria-checked="false" disabled=""><span class="track"></span><span class="txt">Disabled</span></button></div></div><h3 class="h3" style="margin:32px 0 12px">Progress</h3><div class="spec-row c3"><div class="progress"><div class="cap"><span>Not started</span><span class="support">0%</span></div><div class="bar"><i style="width:0"></i></div></div><div class="progress"><div class="cap"><span>In progress</span><span class="support">50%</span></div><div class="bar"><i style="width:50%"></i></div></div><div class="progress is-complete"><div class="cap"><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Completed</span><span class="support">100%</span></div><div class="bar"><i style="width:100%"></i></div></div></div><h3 class="h3" style="margin:32px 0 12px">Stepper card</h3><div class="spec-row c2"><section class="stepcard"><h3 class="step-title">Step 3 of 6</h3><p class="instruction">Standard instruction.</p></section><section class="stepcard is-done"><h3 class="step-title">Step 2 of 6 <span class="badge"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Done</span></h3><p class="instruction">Completed step.</p></section><section class="stepcard"><h3 class="step-title">Step 4 of 6</h3><p class="instruction">Instruction with a safety note.</p><div class="note warn"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l10 18H2z"></path><path d="M12 10v5M12 18h.01"></path></svg><div><strong>Safety</strong>Hot liquid can splash.</div></div></section><section class="stepcard"><h3 class="step-title">Step 5 of 6</h3><p class="instruction">Instruction with a timer.</p><div class="timer" data-state="running"><div class="status"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>Running</span></div><div class="digits" role="timer" data-timer-time="sys-running" aria-label="Simmer pasta, time left">06:12</div><div class="tlabel">Simmer pasta</div><div class="tctl"><button class="btn btn-secondary" data-act="tPause" data-tid="sys-running"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5v14M15 5v14"></path></svg> Pause</button></div></div></section></div><h3 class="h3" style="margin:32px 0 12px">Timer</h3><div class="spec-row c3"><div inert=""><div class="timer" data-state="running"><div class="status"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span>Running</span></div><div class="digits" role="timer" data-timer-time="sys-running" aria-label="Simmer pasta, time left">06:12</div><div class="tlabel">Simmer pasta</div><div class="tctl"><button class="btn btn-secondary" data-act="tPause" data-tid="sys-running"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5v14M15 5v14"></path></svg> Pause</button></div></div></div><div inert=""><div class="timer" data-state="paused"><div class="status"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5v14M15 5v14"></path></svg><span>Paused</span></div><div class="digits" role="timer" data-timer-time="sys-paused" aria-label="Simmer pasta, time left">06:12</div><div class="tlabel">Simmer pasta · paused</div><div class="tctl"><button class="btn btn-primary" data-act="tResume" data-tid="sys-paused"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5l11 7-11 7z"></path></svg> Resume</button><button class="btn btn-secondary" data-act="tReset" data-tid="sys-paused"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"></path></svg> Reset</button></div></div></div><div inert=""><div class="timer" data-state="done"><div class="status"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"></path></svg><span>Time's up: Simmer pasta</span></div><div class="digits" aria-hidden="true">00:00</div><div class="tlabel">Simmer pasta</div><div class="tctl"><button class="btn btn-primary" data-act="tDismiss" data-tid="sys-done"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Dismiss</button></div></div></div></div><h3 class="h3" style="margin:32px 0 12px">Recipe card</h3><div class="spec-row c3"><div><article class="rcard  "><div class="thumb decor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440"><rect width="640" height="440" fill="#E6EBDA"></rect><ellipse cx="320" cy="370" rx="230" ry="26" fill="#293329" opacity=".08"></ellipse><ellipse cx="320" cy="250" rx="215" ry="125" fill="#FFFFFF" stroke="#D9DED2" stroke-width="3"></ellipse><ellipse cx="320" cy="245" rx="170" ry="92" fill="#C65A40"></ellipse><g fill="none" stroke="#EBCB82" stroke-width="11" stroke-linecap="round"><path d="M210 250c30-60 90-70 130-40s60 60 90 20"></path><path d="M230 285c40-30 80-20 120 5s60 10 80-20"></path><path d="M250 225c40 30 90 35 130 10"></path><path d="M270 200c30-20 70-25 110-5"></path></g><g fill="#4F7A44"><ellipse cx="300" cy="225" rx="30" ry="14" transform="rotate(-25 300 225)"></ellipse><ellipse cx="345" cy="238" rx="26" ry="12" transform="rotate(20 345 238)"></ellipse></g><g fill="#F4E7C0"><circle cx="265" cy="260" r="5"></circle><circle cx="385" cy="255" r="5"></circle><circle cx="330" cy="280" r="5"></circle><circle cx="290" cy="290" r="4"></circle></g></svg></div><button class="save" data-act="toggleSave" data-id="tomato-pasta" data-key="save:tomato-pasta" aria-pressed="false" aria-label="Save One-Pot Tomato Garlic Pasta"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z"></path></svg></button>
+  <div class="body"><h3 class="h3"><a href="#/recipe/tomato-pasta">One-Pot Tomato Garlic Pasta</a></h3>
+  <div class="facts-row"><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>25 min</span><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.5 11h-11z"></path><path d="M8 8a4 4 0 0 1 8 0"></path></svg>8 ingredients</span></div>
+  <div><span class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"></path><path d="M5 19c3-5 6-8 10-10"></path></svg>Low effort</span> </div></div></article><p class="label" style="margin-top:8px">Default</p></div><div><article class="rcard  is-hover is-focus"><div class="thumb decor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440"><rect width="640" height="440" fill="#F5EEDC"></rect><ellipse cx="320" cy="375" rx="230" ry="24" fill="#293329" opacity=".08"></ellipse><ellipse cx="320" cy="250" rx="225" ry="128" fill="#FFFFFF" stroke="#D9DED2" stroke-width="3"></ellipse><rect x="185" y="170" width="270" height="170" rx="40" fill="#D9A55E"></rect><rect x="200" y="184" width="240" height="142" rx="30" fill="#EBC98B"></rect><g fill="#F3D35F"><circle cx="250" cy="230" r="34"></circle><circle cx="300" cy="215" r="38"></circle><circle cx="355" cy="225" r="36"></circle><circle cx="400" cy="245" r="30"></circle><circle cx="280" cy="270" r="34"></circle><circle cx="340" cy="275" r="34"></circle><circle cx="230" cy="275" r="26"></circle></g><g fill="#FBE9A0" opacity=".8"><circle cx="290" cy="205" r="12"></circle><circle cx="350" cy="215" r="10"></circle><circle cx="260" cy="255" r="9"></circle></g><g fill="#4F7A44"><ellipse cx="330" cy="250" rx="9" ry="4" transform="rotate(-30 330 250)"></ellipse><ellipse cx="312" cy="256" rx="8" ry="4" transform="rotate(30 312 256)"></ellipse></g></svg></div><button class="save" data-act="toggleSave" data-id="soft-eggs" data-key="save:soft-eggs" aria-pressed="false" aria-label="Save Soft Scrambled Eggs on Toast"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z"></path></svg></button>
+  <div class="body"><h3 class="h3"><a href="#/recipe/soft-eggs">Soft Scrambled Eggs on Toast</a></h3>
+  <div class="facts-row"><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>10 min</span><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.5 11h-11z"></path><path d="M8 8a4 4 0 0 1 8 0"></path></svg>5 ingredients</span></div>
+  <div><span class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"></path><path d="M5 19c3-5 6-8 10-10"></path></svg>Very low effort</span> </div></div></article><p class="label" style="margin-top:8px">Hover and focus</p></div><div><article class="rcard  "><div class="thumb decor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440"><rect width="640" height="440" fill="#E9EDDF"></rect><ellipse cx="320" cy="375" rx="235" ry="22" fill="#293329" opacity=".08"></ellipse><ellipse cx="310" cy="245" rx="225" ry="130" fill="#FFFFFF" stroke="#D9DED2" stroke-width="3"></ellipse><path d="M150 280a165 165 0 0 1 320 0z" fill="#E2B467"></path><path d="M165 268a150 150 0 0 1 290 0z" fill="#F1D58C"></path><path d="M190 268a125 125 0 0 1 240 0z" fill="#EBC067"></path><g fill="#4A3B32"><circle cx="250" cy="250" r="9"></circle><circle cx="290" cy="236" r="9"></circle><circle cx="335" cy="244" r="9"></circle><circle cx="372" cy="256" r="9"></circle></g><path d="M170 300a150 150 0 0 0 290 0" fill="#E2B467" transform="translate(0 -18)"></path><circle cx="505" cy="290" r="42" fill="#FFFFFF" stroke="#D9DED2" stroke-width="3"></circle><circle cx="505" cy="290" r="30" fill="#C65A40"></circle><g fill="#4F7A44"><circle cx="495" cy="284" r="5"></circle><circle cx="514" cy="296" r="5"></circle></g></svg></div><button class="save" data-act="toggleSave" data-id="bean-quesadillas" data-key="save:bean-quesadillas" aria-pressed="true" aria-label="Save Black Bean Quesadillas"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z" fill="currentColor"></path></svg><span>Saved</span></button>
+  <div class="body"><h3 class="h3"><a href="#/recipe/bean-quesadillas">Black Bean Quesadillas</a></h3>
+  <div class="facts-row"><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>15 min</span><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.5 11h-11z"></path><path d="M8 8a4 4 0 0 1 8 0"></path></svg>5 ingredients</span></div>
+  <div><span class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"></path><path d="M5 19c3-5 6-8 10-10"></path></svg>Very low effort</span> </div></div></article><p class="label" style="margin-top:8px">Saved: filled bookmark plus “Saved” label</p></div></div><div style="margin-top:16px;max-width:420px"><article class="rcard is-continue "><div class="thumb decor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440"><rect width="640" height="440" fill="#F8EBD3"></rect><ellipse cx="320" cy="380" rx="220" ry="22" fill="#293329" opacity=".08"></ellipse><path d="M90 220h460a230 170 0 0 1-460 0z" fill="#FFFFFF" stroke="#D9DED2" stroke-width="3"></path><ellipse cx="320" cy="220" rx="230" ry="62" fill="#E39A47"></ellipse><ellipse cx="320" cy="222" rx="200" ry="46" fill="#EDAE5C"></ellipse><path d="M230 222c30-30 60-30 90 0s60 30 90 0" fill="none" stroke="#FFF6E4" stroke-width="9" stroke-linecap="round"></path><g fill="#4F7A44"><ellipse cx="400" cy="215" rx="16" ry="6" transform="rotate(-20 400 215)"></ellipse><ellipse cx="420" cy="228" rx="14" ry="5" transform="rotate(25 420 228)"></ellipse></g><g fill="none" stroke="#293329" stroke-width="5" stroke-linecap="round" opacity=".25"><path d="M270 150c-12-20 12-30 0-50"></path><path d="M330 150c-12-20 12-30 0-50"></path><path d="M390 150c-12-20 12-30 0-50"></path></g></svg></div><button class="save" data-act="toggleSave" data-id="lentil-soup" data-key="save:lentil-soup" aria-pressed="false" aria-label="Save Coconut Red Lentil Soup"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 4h12v17l-6-4-6 4z"></path></svg></button>
+  <div class="body"><h3 class="h3"><a href="#/recipe/lentil-soup">Coconut Red Lentil Soup</a></h3>
+  <div class="facts-row"><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>40 min</span><span><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.5 11h-11z"></path><path d="M8 8a4 4 0 0 1 8 0"></path></svg>10 ingredients</span></div>
+  <div><span class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle></svg>Medium focus</span> <span class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 5l11 7-11 7z"></path></svg> Step 2 of 7</span></div></div></article><p class="label" style="margin-top:8px">Continue Cooking (needs an active session to show step; shown here as example)</p></div><h3 class="h3" style="margin:32px 0 12px">Feedback and badges</h3><div class="spec-row c2"><div class="note info"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg><div><strong>Info</strong>Your place is saved.</div></div><div class="note warn"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l10 18H2z"></path><path d="M12 10v5M12 18h.01"></path></svg><div><strong>Warning</strong>Pan is hot.</div></div><div class="badge"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg> Success</div><div class="pill"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15"></path><path d="M5 19c3-5 6-8 10-10"></path></svg> Low effort</div></div></section></div></div><footer class="site-footer"><div class="wrap"><span>MindFlow · one manageable step at a time</span><a href="#/system">Design system</a></div></footer></main></div>
+<div id="dock" class="dock" role="region" aria-label="Active timers"><div class="dockitem" data-state="running"><div class="info"><span class="where"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg> Running</span><a class="nm" href="#/cook/tomato-pasta" aria-label="Step 2 · Stir garlic, go to this recipe">Step 2 · Stir garlic</a><span class="d" data-timer-time="tomato-pasta:1">00:59</span></div><button class="btn btn-secondary btn-icon" data-act="tPause" data-tid="tomato-pasta:1" aria-label="Pause Step 2 · Stir garlic"><svg class="ic " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5v14M15 5v14"></path></svg></button></div></div>
+<dialog id="dlg"></dialog>
+<div id="announce" class="sr" aria-live="polite" role="status">Stir garlic timer started</div>
+<div id="alerts" class="sr" aria-live="assertive" role="alert"></div>
+<noscript><p style="padding:24px">MindFlow needs JavaScript to run this prototype.</p></noscript>
+
+
+
+
+</body></html>
